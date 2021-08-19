@@ -1,0 +1,39 @@
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The Problem}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Contributions}{6}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Background}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The supervised classification problem}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Neural networks}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Training algorithms}{10}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Loss functions}{11}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Backpropagation}{11}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Adversarial risk}{12}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Standard attacks for neural networks in literature}{13}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Fast Gradient Sign Method}{15}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Projected Gradient Descent}{15}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Benign Overfitting and label noise}{17}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Dataset poisoning}{18}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Theoretical Results}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Improved bound with Lipschitzness Assumptions}{19}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Lipschitzness bounded by distance to the nearest point, of different label}{21}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Early Unsuccessful Experiments}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Building graphs on training points}{23}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Building graphs on input space}{24}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Using Low Rank representations}{26}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Using the feature representations of a trained network}{26}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Using the feature representations of a trained network as well as input space}{26}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}Min Coloring trick}{27}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Experimental results}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Toy Distribution}{29}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Toy distribution with points far away from the decision boundary}{29}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Toy distribution with points close to the decision boundary}{31}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}The worst poisons are not the ones producing pockets with the wrong label}{34}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Flipping to an 11th class in MNIST}{34}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}Back to MNIST: Analysis using adversarial paths}{35}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Finding a path from a point to the boundary}{35}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Using adversarial paths to analyse poisons}{36}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}The experiments}{38}{subsection.5.3.3}%
+\contentsline {subsubsection}{0-1 MNIST}{38}{section*.14}%
+\contentsline {subsubsection}{MNIST}{38}{section*.16}%
+\contentsline {chapter}{\numberline {6}Future Work: A Meta-Learning Approach}{42}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusion}{46}{chapter.7}%
