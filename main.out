@@ -13,7 +13,7 @@
 \BOOKMARK [2][-]{subsection.2.4.2}{Projected Gradient Descent}{section.2.4}% 13
 \BOOKMARK [1][-]{section.2.5}{Benign Overfitting and label noise}{chapter.2}% 14
 \BOOKMARK [1][-]{section.2.6}{Dataset poisoning}{chapter.2}% 15
-\BOOKMARK [0][-]{chapter.3}{Theoretical Results}{}% 16
+\BOOKMARK [0][-]{chapter.3}{Is Lipschitzness always beneficial for robustness?}{}% 16
 \BOOKMARK [1][-]{section.3.1}{Improved bound with Lipschitzness Assumptions}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.2}{Lipschitzness bounded by distance to the nearest point, of different label}{chapter.3}% 18
 \BOOKMARK [0][-]{chapter.4}{Early Unsuccessful Experiments}{}% 19
@@ -29,7 +29,7 @@
 \BOOKMARK [2][-]{subsection.5.1.2}{Toy distribution with points close to the decision boundary}{section.5.1}% 29
 \BOOKMARK [1][-]{section.5.2}{The worst poisons are not the ones producing pockets with the wrong label}{chapter.5}% 30
 \BOOKMARK [2][-]{subsection.5.2.1}{Flipping to an 11th class in MNIST}{section.5.2}% 31
-\BOOKMARK [1][-]{section.5.3}{Back to MNIST: Analysis using adversarial paths}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.3}{Analysis using adversarial paths}{chapter.5}% 32
 \BOOKMARK [2][-]{subsection.5.3.1}{Finding a path from a point to the boundary}{section.5.3}% 33
 \BOOKMARK [2][-]{subsection.5.3.2}{Using adversarial paths to analyse poisons}{section.5.3}% 34
 \BOOKMARK [2][-]{subsection.5.3.3}{The experiments}{section.5.3}% 35
