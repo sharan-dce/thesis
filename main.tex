@@ -37,9 +37,7 @@ Learning Models}
 
 \doublespacing
 
-
 \begin{document}
-
 \maketitle
 
 \chapter*{Acknowledgements}
@@ -79,7 +77,7 @@ is that placing mislabeled points in the highest probability density regions of
 the data distribution has minimal effect on the adversarial accuracy of a
 network that memorises it. We also extend some previous theoretical results
 regarding uniform label noise, with additional reasonable assumptions about
-networks, such as lipschitzness.
+networks, such as Lipschitzness.
 
 \tableofcontents
 
@@ -218,6 +216,16 @@ error". Precisely, let this test set be denoted as $D_\text{test} =
     \llbracket y \neq \mathcal{C}(\vec{x}) \rrbracket
 \end{equation*}
 
+$\mathcal{C}$ is a ``hard'' classifier in the discussion above. It produces one
+class in its output. We will be dealing with \emph{probabilistic} classifiers as
+well in the discussions, where $\mathcal{C}:\mathbb{R}^d\to\Delta^\Omega$
+produces a probabity distribution over classes, where $\Delta^\Omega$ is the
+$k$-dimensional simplex. In such a case, the final decision made by the
+classifier will be $\underset{\Omega}{\arg\max}~\mathcal{C}(\vec{x})$. The
+nature of the classifier under study will be clear from the context, and all
+classifiers producing a distribution over the classes will be explicitly
+referred to as probabilistic classifiers.
+
 \section{Neural networks}
 
 Deep Neural Networks are a family of over-parametrised models. They are proven
@@ -353,22 +361,24 @@ is. We could then optimise over this metric, and tweak the parameters of the
 model hoping that the resultant model will have a low natural risk. Such metrics
 are called loss functions.
 
-For classification problems, including the ones in this thesis, we will be using
-the \emph{Cross Entropy Loss}, which is standard for classifiers. For a ``target"
-distribution $P$, and a distribution $Q$ both over a set $\Omega$, the cross
-entropy loss produces the lowest value when $P=Q$, and has high values when $Q$
-is very different from $P$.
+For classification problems in this thesis, we will be using the \emph{Cross
+Entropy Loss}, which is standard for neural network classifiers. For a ``target"
+distribution $P$, and a distribution $Q$ both over a set $\Omega$, the
+cross-entropy $H$ between $P$ and $Q$ has the lowest value when $P=Q$, and high
+values when $Q$ is very different from $P$.
 \begin{equation*}
     H[Q, P] = -\sum_{\omega \in \Omega} P(\omega) \log Q(\omega)
 \end{equation*}
 
 % fix phrasing here
 % use one-hot function here
-Given an input example $\vec{x}$, labeled with $y=c(\vec{x})$, to a classifier
-$\mathcal{C}$, which produces a distribution over classes
-$\mathcal{C}(\vec{x})$, the cross-entropy loss evaluates to
-$H[\mathcal{C(\mathcal{\vec{x}})}, \vec{y}]$ where $\vec{y}_j=\llbracket j == y
-\rrbracket$.
+Given an input example $\vec{x}$, labeled with $y=c(\vec{x})$, a probabilistic
+classifier $\mathcal{C}: \mathbb{R}^d \to \Delta^\Omega$ produces a distribution
+over the set of classes ($\Omega$). The cross-entropy loss for this classifier
+at the given datapoint $(\vec{x}, y)$ evaluates to
+$H[\mathcal{C(\mathcal{\vec{x}})}, \vec{y}]$ where $\vec{y} \in \Delta^\Omega,
+\vec{y}_j=\llbracket j == y \rrbracket$. $\Delta^\Omega$ refers to the
+$k$-dimensional simplex.
 
 \subsection{Backpropagation}
 To train a neural network $\mathcal{C}$ with the algorithms mentioned in the
@@ -466,9 +476,10 @@ for which the attack strategy could not find a perturbation that gets the
 classifier to misclassify.
 
 
-Given a classifier $\mathcal{C}$ and a point $\vec{x} \sim \mathcal{P}$, the
-problem of finding an adversarial example for $\vec{x}$, i.e. finding an
-$\vec{\tilde{x}} \in \mathcal{B}_\rho^p(\vec{x})~\text{s.t.}~c(\vec{x}) \neq
+Given a probabilistic classifier $\mathcal{C}: \mathbb{R}\to\Delta^\Omega$ and a
+point $\vec{x} \sim \mathcal{P}$, the problem of finding an adversarial example
+for $\vec{x}$, i.e. finding an $\vec{\tilde{x}} \in
+\mathcal{B}_\rho^p(\vec{x})~\text{s.t.}~c(\vec{x}) \neq
 \mathcal{C}(\vec{\tilde{x}})$ can be written as a constrained optimization
 problem:
 
@@ -545,10 +556,11 @@ it does not matter which loss is used, as long as it penalizes, or has high
 values when the model produces the wrong class prediction, and low value when it
 gives the right one. The cross entropy loss is the most popular choice. Given a
 data-point $\vec{x}$ and neural network classifier $\mathcal{C}_\vec{\theta}$
-parameterized by $\vec{\theta}$, these methods rely on computing the loss value
-by forward propagating through $\mathcal{C}_\vec{\theta}$, and then
-backpropagating, computing gradients all the way to the inputs, finding the
-gradient of the loss with respect to the input.
+(modelling a probabilistic classifier) parameterized by $\vec{\theta}$, these
+methods rely on computing the loss value by forward propagating through
+$\mathcal{C}_\vec{\theta}$, and then backpropagating, computing gradients all
+the way to the inputs, finding the gradient of the loss with respect to the
+input.
 
 Essentially, we compute the following:
 \begin{equation*}
@@ -796,7 +808,7 @@ points.
 
 
 \chapter{Is Lipschitzness always beneficial for robustness?}
-\label{section:lipschitzness-assumption}
+\label{section:Lipschitzness-assumption}
 
 \citet{sanyal2021how} showed a theoretical result regarding \emph{uniform} label
 noise, stated above in \cref{section:benign}. The result signifies that when
@@ -812,8 +824,8 @@ discontinuously. Each mislabeled training point will hence have a region around
 it, where the network produces the wrong answer. This is illustrated in
 \cref{fig:dictionary}.
 
-In this chapter, we attempt to device theoretical and experimental results with
-lipschitzness assumptions. The results are classifier agnostic, but the
+In this chapter, we develop theoretical and experimental results with
+Lipschitzness assumptions. The results are classifier agnostic, but the
 classifier must be Lipschitz.
 
 \begin{figure}
@@ -837,10 +849,10 @@ classifier must be Lipschitz.
 
 \end{figure}
 
-A function $f: X \to Y$ is lipschitz-continuous if there exists a constant
+A function $f: X \to Y$ is $\kappa$-Lipschitz if there exists a constant
 $\kappa$ s.t. $\forall \vec{x_1}, \vec{x_2} \in X$,
 \begin{equation*}
-    \label{eq:lipschitz}
+    \label{eq:Lipschitz}
     \frac{d_1({f(\vec{x_1}), f(\vec{x_2})})}
         {d_2({\vec{x_1}, \vec{x_2}})}
     \leq \kappa
@@ -853,13 +865,16 @@ adversary, i.e., we require a smaller attack-radius to get the same lower bound
 on the adversarial risk.
 
 \section{Improved bound with Lipschitzness Assumptions}
+
 \begin{theorem}
-    \label{theorem:lipschitzness-extension}
-    Let $\mathcal{C}$ be a classifier, and $\mathcal{D}: \mathbb{R}^d \to
-    \mathbb{R}_{\geq 0}$ the data distribution, and $c: \mathbb{R}^d \to \Omega$
-    be the ground truth labeling function, where $\Omega$ is the set of classes.
-    If there exist constants $c_1 \geq c_2 > 0, \rho > 0$ and a set $\zeta
-    \subset \mathbb{R}^d$, such that
+    \label{theorem:Lipschitzness-extension}
+    Let $\mathcal{C}: \mathbb{R}^d \to \Delta^\Omega$ be a probabilistic
+    classifier and $\mathcal{C}_\text{hard}(\vec{x}) =
+    \underset{\Omega}{\arg\max}~\mathcal{C}(\vec{x})$. Let $\mathcal{D}:
+    \mathbb{R}^d \to \mathbb{R}_{\geq 0}$ be the data distribution, and $c:
+    \mathbb{R}^d \to \Omega$ be the ground truth labeling function. $\Omega$ is
+    the set of classes. If there exist constants $c_1 \geq c_2 > 0, \rho > 0$
+    and a set $\zeta \subset \mathbb{R}^d$, such that
     \begin{enumerate}
         \item $\mathbb{P}_{\vec{x} \sim \mathcal{D}} \bigg [~\underset{\vec{s}
         \in \zeta}{\bigcup}~\mathcal{B}_\rho^p(\vec{s}) \bigg ] \geq c_1$
@@ -869,28 +884,37 @@ on the adversarial risk.
         \mathcal{B}_\rho^p(\vec{s}),~c(\vec{u}) = c(\vec{v})$
     \end{enumerate}
     where $\mathcal{B}^p_\rho(\vec{x})$ is a $\rho$-radius $l_p$ ball around
-    $\vec{x}$. Let S be a training set, obtained by taking $n$ i.i.d. samples
-    from $\mathcal{P}$, and labeling each with $c(.)$ with $\eta$ probability,
-    or some incorrect class with probability $1-\eta$. If a classifier
-    $\mathcal{C}$ is such that 
+    $\vec{x}$. Let $S=\{(\vec{x_i},y_i)\}_{i=1}^n$ be a training set, obtained
+    by taking $n$ i.i.d. samples from $\mathcal{P}$, and labeling each sample
+    $\vec{x_i}$ with $y_i=c(\vec{x_i})$ with $\eta$ probability, or any class
+    $y_i\in\Omega\setminus\{c(\vec{x_i})\}$ with $1-\eta$ probability.
+    
+    If $\mathcal{C}$ is such that 
     \begin{enumerate}
-        \item $\mathcal{C}$ has a 100\% training accuracy on $S$. This means it
-        gets the correct class on unflipped points, and has also memorized the
-        wrong label on flipped points. Further, on each training point, the
-        classifier $\mathcal{C}$ is confident on the result at least $\chi$ more
-        than the second largest output probability.
-        \item $\mathcal{C}$ is locally lipschitz, so for each point $\vec{x} \in
-        \mathbb{R}^d$ and $\vec{x'}$ in its neighbourhood,
+        \item $\mathcal{C}_\text{hard}$ has 100\% training accuracy on $S$, and
+        $\mathcal{C}$ has a margin \footnote{The margin here refers to the
+        difference between the highest and second highest probabilities in the
+        classifier's output.} of $\chi$ on the training set points.
+        \item $\mathcal{C}$ is locally Lipschitz, such that $~\forall \vec{u},
+        \vec{v} \in \mathbb{R}^d$,
             \begin{equation*}
-                \frac{\llbracket \mathcal{C}(\vec{x}) \neq \mathcal{C}(\vec{x'}) \rrbracket}
-                    {\norm{\vec{x} - \vec{x'}}_p} 
+                \frac{\norm{\mathcal{C}(\vec{u}) - \mathcal{C}(\vec{v})
+                }_\text{TV}}
+                    {\norm{\vec{u} - \vec{v}}_p} 
                 \leq \kappa
             \end{equation*}
     \end{enumerate}
-    then if $n \geq \frac{|\zeta|}{\eta c_2} \log (|\zeta|/\delta)$, with at
+    where the total variation distance $\norm{p-q}_\text{TV}$ between two
+    distributions $p$ and $q$ on a finite set $\Omega$ is given by
+    \begin{equation*}
+        \norm{p-q}_\text{TV} = \frac{1}{2}\sum_{\omega\in\Omega} 
+        |p(\omega)-q(\omega)|
+    \end{equation*}
+    
+    Then, if $n \geq \frac{|\zeta|}{\eta c_2} \log (|\zeta|/\delta)$, with at
     least $1-\delta$ probability,
     $\mathcal{R}_{\text{Adv}}^{2\rho-\tau}(\mathcal{C}) \geq c_1$ where $\tau =
-    \frac{1}{\kappa}$.
+    \frac{\chi}{2\kappa}$.
 \end{theorem}
 \begin{proof}
 Consider some $\vec{x}$
@@ -898,18 +922,27 @@ $
 \in \zeta, ~\text{s.t. } \exists (\vec{x'}, y) \in S,~\vec{x'}
 \in \mathcal{B}_\rho^p(\vec{x}),~y \neq c(\vec{x'})
 $,
-i.e., there exists a training point in $S$ inside the $l_p$ ball around
-$\vec{x}$ which has been mislabeled. The classifier would have memorized this
-point. We need to find out the attack radius $\rho$ required to render all of
-the points inside $\mathcal{B}_\rho^p(\vec{x})$ vulnerable. The worst case is
+i.e., there exists a training point $\vec{x'}$ in $S$ inside the $l_p$ ball
+around $\vec{x}$ which has been mislabeled. The classifier would have memorized
+this point. We need to find out the attack radius $\rho$ required to render all
+of the points inside $\mathcal{B}_\rho^p(\vec{x})$ vulnerable. The worst case is
 when this point $\vec{x'}$ lies on the surface of $\mathcal{B}_\rho^p(\vec{x})$
 since this is the case where the attack radius required is going to be the
 largest. Now, any mislabeled point that is memorized by the classifier is going
 to create a region of radius at least $\tau$ where the classifier produces the
 same wrong label $y$. This means in the worst case, when $\vec{x'}$ lies on the
 surface, we will require an attack radius of $2\rho-\tau$ for all points in
-$\mathcal{B}_\rho^p(\vec{x})$ to be vulnerable. 
-
+$\mathcal{B}_\rho^p(\vec{x})$ to be vulnerable. Let $\vec{\hat{x}}$ be the point
+closest to $\vec{x'}$ in $l_p$ distance such that $\mathcal{C}(\vec{x'}) \neq
+\mathcal{C}(\vec{\hat{x}})$. Since $\mathcal{C}$ has a margin of $\chi$,
+\begin{equation*}
+    \tau \geq \frac{\norm{\mathcal{C}(\vec{\hat{x}}) - \mathcal{C}(\vec{x'})
+                }_\text{TV}}
+                    {\kappa}
+        \geq
+        \frac{(1/2)\cdot\chi}{\kappa} = 
+        \frac{\chi}{2\kappa}
+\end{equation*}
 If there is one mislabeled point placed inside each $l_p$ ball around every
 point in $\zeta$, then $\mathcal{R}_{\text{Adv}}^{2\rho-\tau} \geq c_1$, since
 all of the mass inside every $l_p$ ball considered contributes to the
@@ -919,7 +952,7 @@ We will now lower bound the probability that there is one mislabeled point
 placed inside each $l_p$ ball around every point in $\zeta$.
 
 \begin{equation*}
-    \label{eq:lipschitz-extension}
+    \label{eq:Lipschitz-extension}
 \begin{split}
     & \mathbb{P} \biggl [~\underset{\vec{s} \in \zeta}{\bigwedge} \exists 
     \vec{s'} \in \mathcal{B}_\rho^p(\vec{s}), 
@@ -944,7 +977,7 @@ samples suffice for this. This completes the proof.
 
 The above theorem shows that if there are regions of very high probability mass
 in the data distribution, and there is uniform label noise at some rate, then a
-$\kappa$-lipschitz classifier that fits 100\% of the training data with some
+$\kappa$-Lipschitz classifier that fits 100\% of the training data with some
 threshold confidence will have high adversarial error with high probability.
 
 \subsection*{An Example}
@@ -955,34 +988,39 @@ truth function used to produce the labels, is given by $c([u_x, u_y]) =
 \llbracket u_x+u_y \geq 0 \rrbracket$. Two mislabaled points are placed at $[-1,
 -1]$ and $[1, 1]$ each.
 
-In order to have control over the Lipschitzness, and also to ensure that all of
-the training points are fit, we conduct these experiments with soft $k$-nearest
-neighbour classifiers. To classify an input $\vec{x}$, a soft $k$-nearest
-neighbour classifier considers the $k$ nearest neighbours from the training set.
-For these $k$ neighbours, the inverse of the $l_2$ distance to $\vec{x}$ are
-considered, and instead of a majority vote, this inverse metric is considered to
-be the weight given to each neighbour. These weights are summed per class, and
-the summed values are used as logits. These logits are plugged into the softmax
-function to produce a distribution over classes.
+Let $D_\text{train}$ be the training set. In order to have control over the
+Lipschitzness, and also to ensure that all of the training points are fit, we
+conduct these experiments with soft $k$-nearest neighbour classifiers. To
+classify an input $\vec{x}$, a soft $k$-nearest neighbour classifier considers
+the $k$ nearest neighbours from the training set. For these $k$ neighbours, the
+inverse of the $l_2$ distance to $\vec{x}$ are considered, and instead of a
+majority vote, this inverse metric is considered to be the weight given to each
+neighbour. The output is the class with the highest weight. For ease of
+notation, we fix the classifier's output to be the probability of the input
+belonging to class ``0''. The classifier produces a soft output, such that
+$\forall \vec{x} \in D_\text{train},~\mathcal{C}_{k\text{-NN}}(\vec{x}) =
+\llbracket y = 0 \rrbracket$. Elsewhere, the classifier produces a smooth
+output. We need not concern ourselves with the exact nature of this classifier.
+We can simply assume Lipschitzness:
+\begin{equation*}
+    \forall \vec{x_1}, \vec{x_2},~~
+    \frac{|
+        \mathcal{C}_{k\text{-NN}}(\vec{x_1}) - \mathcal{C}_{k\text{-NN}}(\vec{x_2})
+    |}{\norm{\vec{x_1} - \vec{x_2}}_\infty}
+    \leq \kappa
+\end{equation*}
 
-We vary $k$ while evaluating the Lipschitzness, and the adversarial and natural
-accuracies of these classifiers. We will be using the following definition of
-Lipschitzness here:
-\begin{definition}
-    The soft $k$-nearest neighbour classifier $\mathcal{C}_{k\text{-NN}}$ is
-    $\kappa$-Lipschitz if
-    \begin{equation*}
-        \forall \vec{x_1}, \vec{x_2},~~
-        \frac{\llbracket 
-            \mathcal{C}_{k\text{-NN}}(\vec{x_1}) \neq \mathcal{C}_{k\text{-NN}}(\vec{x_2})
-        \rrbracket}{\norm{\vec{x_1} - \vec{x_2}}_\infty}
-        \leq \kappa
-    \end{equation*}
-\end{definition}
+We vary $k$ while lower-bounding the Lipschitzness, and evaluating the
+adversarial and natural accuracies of the resultant classifiers.
+
+Figure \ref{fig:knn-map}(a) shows a visualisation of the classifiers' output,
+for $k=1,3,5$. Classifiers with lower values $k$ are smoother. Figure
+\ref{fig:knn-accuracies} shows the natural and adversarial accuracies of these
+classifiers, as $k$ is varied.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.37]{nn-map.png}
+    \includegraphics[scale=0.36]{nn-map.png}
     \caption{A visualisation of the decision boundary learnt by the soft $k$-NN
     classifiers, for increasing $k$. The colors in the figure show hard outputs,
     showing the class given the highest probability. Classifiers with high $k$
@@ -994,16 +1032,18 @@ Lipschitzness here:
 \begin{figure}[!h]
     \centering
     \qquad
-    \subfloat[][]{\includegraphics[scale=0.4]{nn-accuracies.png}}
+    \subfloat[][\centering Natural and Adversarial Accuracies of
+    $\mathcal{C}_{k\text{-NN}}$]{\includegraphics[scale=0.4]{nn-accuracies.png}}
     \qquad
-    \subfloat[][]{\includegraphics[scale=0.4]{nn-distances.png}}
-    \caption{}
+    \subfloat[][\centering Lower bound on Lipschitzness ($\kappa$) of the
+    classifiers]{\includegraphics[scale=0.40]{nn-distances.png}}
+    \caption{Smoother soft $k$-nearest neighbour classifiers are less adversarially robust.}
     \label{fig:knn-accuracies}
 \end{figure}
 
 \section{Lipschitzness bounded by distance to the nearest point, of different label}
 \begin{theorem}
-    \label{theorem:lipschitzness-extension-closest-one}
+    \label{theorem:Lipschitzness-extension-closest-one}
     Let $\mathcal{C}$ be a classifier, and $\mathcal{D}: \mathbb{R}^d \to
     \mathbb{R}_{\geq 0}$ the data distribution, and $c: \mathbb{R}^d \to \Omega$
     be the ground truth labeling function, where $\Omega$ is the set of classes.
@@ -1030,8 +1070,8 @@ Lipschitzness here:
         wrong label on flipped points. Further, on each training point, the
         classifier $\mathcal{C}$ is confident on the result at least $\chi$ more
         than the second largest output probability.
-        \item $\mathcal{C}$ is locally lipschitz. We assume that this
-        lipschitzness constant is a decreasing function $\kappa$ of the distance
+        \item $\mathcal{C}$ is locally Lipschitz. We assume that this
+        Lipschitzness constant is a decreasing function $\kappa$ of the distance
         to the nearest point of the opposite label. So for each point $\vec{x}
         \in \mathbb{R}^d$ and $\vec{x'}$ in its neighbourhood, with the nearest
         point to $\vec{x}$ with a different label being at a distance greater
@@ -1061,7 +1101,7 @@ Lipschitzness here:
     The lower bound on the probability might seem highly vacuous at first, but
     it might not be so. With increasing sample complexity, the training set will
     be having a large number of correctly labeled points around an incorrectly
-    labeled point, when the lipschitzness assumption also breaks down if the
+    labeled point, when the Lipschitzness assumption also breaks down if the
     classifier has to memorise the mislabeled point. The above theorem, hence
     should be considered in the light of low sample complexity. If there are
     only a few samples taken from $\mathcal{D}$, then while the highest
@@ -1490,7 +1530,7 @@ dimensional, the next section involves 64 dimensional toy data.
 
   
    
-% \subsection{Theorem capturing the tradeoff - lipschitzness bounded by
+% \subsection{Theorem capturing the tradeoff - Lipschitzness bounded by
 % inter-point distances}
 
 % Given a dataset $\mathcal{D}$, drawn from a distribution $\mathcal{P}$ and
@@ -1502,7 +1542,7 @@ dimensional, the next section involves 64 dimensional toy data.
 %     \item Given a point $\vec{x_1}$ which the network $\mathcal{C}$ has fit with
 %     confidence $\chi$ more than the second most confident class, and another
 %     point $\vec{x_2}$ which is closest to $\vec{x_1}$ of another class in the
-%     training set $\mathcal{D}$, under some norm $p$. We assume the lipschitzness
+%     training set $\mathcal{D}$, under some norm $p$. We assume the Lipschitzness
 %     of a network is constrained by a decreasing function $\phi$ of the distance
 %     to the nearest point of another class:
 %     \begin{equation*}
@@ -1676,21 +1716,21 @@ understand what might be an optimal strategy to flip labels.
 
 % \subsection{Toy experiment with Lipschitzness constraints on the network}
 % This experiment is on the toy dataset, with $d=16$. We constrain the
-% lipschitzness of the network trained on the poisoned dataset, using spectral
+% Lipschitzness of the network trained on the poisoned dataset, using spectral
 % normalization on every layer. The last layer's spectral norm is varied, and the
 % results show that the higher this spectral norm, lower the adversarial accuracy
 % of the network trained on the poisoned datasets. Hence, spectral normalization
 % as a regularization leads to higher adversarial accuracy. Poisons which were
 % placed very close to the mean of the gaussians, were not even memorized by
 % networks having a lower spectral norm, which acts as a natural defence against
-% mislabelled points. Figure \ref{fig:lipschitzness-toy} shows the results of the
+% mislabelled points. Figure \ref{fig:Lipschitzness-toy} shows the results of the
 % above experiment.
 
 % \begin{figure}[!h]
 %     \centering
-%     \includegraphics[scale=0.43, trim={0 50 0 0}, clip]{lipschitzness_toy}
+%     \includegraphics[scale=0.43, trim={0 50 0 0}, clip]{Lipschitzness_toy}
 %     \caption{Accuracies of the networks trained with different spectral normalization constraints. Distance of the mislabelled points from the mean is written inside the sub-figures. For points closer than 2.8, the networks dont memorize the training set entirely, hence that part has not been shown.}
-%     \label{fig:lipschitzness-toy}
+%     \label{fig:Lipschitzness-toy}
 % \end{figure}
 
 
@@ -1769,11 +1809,11 @@ results show the same trend.
     \centering
     % \includegraphics[scale=0.75]{normal_training_toy_dataset}
     \subfloat[][\centering Network learning a ``pocket" around a mislabeled
-    point]{{\includegraphics[scale=0.35]{thesis-learning-pockets-or-tweaking-boundary-1}}}
+    point]{{\includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-1}}}
     \qquad
     \subfloat[][\centering Network teaking the decision boundary to
     ``accommodate" a mislabaled
-    point]{{\includegraphics[scale=0.35]{thesis-learning-pockets-or-tweaking-boundary-2.jpg}}}
+    point]{{\includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-2.jpg}}}
     \caption{The above figure shows two different ways in which a classifier
     could memorize a mislabeled point. If the decision boundary is tweaked to
     accommodate a mislabeled point, it could lead to much higher adversarial

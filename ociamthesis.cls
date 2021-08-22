@@ -65,7 +65,7 @@
 {
 % Latest Logo, Square version (the default!)
 % you need an oxlogo.eps or oxlogo.pdf file as appropriate
-\def\logo{{\includegraphics[width=42mm]{./images/oxlogo}}}
+\def\logo{{\includegraphics[width=7.2cm]{./images/oxlogo}}}
 }{}
 
 %
@@ -101,12 +101,12 @@
   \null\vfill
   \begin{center}
     { \Huge {\bfseries {\@title}} \par}
-{\large \vspace*{40mm} {\logo \par} \vspace*{25mm}}
+{\large \vspace*{20mm} {\logo \par} \vspace*{15mm}}
     {{\Large \@author} \par}
 {\large \vspace*{1ex}
     {{\@college} \par}
-\vspace*{1ex}
-    {University of Oxford \par}
+% \vspace*{1ex}
+%     {University of Oxford \par}
 \vspace*{25mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
