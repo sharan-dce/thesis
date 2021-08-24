@@ -57,21 +57,23 @@ Learning Models}
 Deep Neural Networks have achieved the state of the art in many tasks. However,
 recently there have been concerns regarding their robustness, and hence
 reliability, when being deployed in mission critical applications. It seems that
-Neural Networks can be easily fooled, by adding small perturbations to the
-input. There has been a recent flow of literature in the direction of
+Neural Networks can be easily fooled, by adding small perturbations to the input
+\citep{42503}. There has been a recent flow of literature in the direction of
 purposefully making modifications to datasets in order to increase the
 vulnerability of Neural Networks trained on them. Such modifications to datasets
-with malicious intent, is called dataset poisoning.
+with malicious intent, is called dataset poisoning \citep{just-how-toxic,
+DBLP:journals/corr/abs-1712-05526}.
 
 Label flipping is one such dataset poisoning attack, where certain samples from
 a dataset are chosen, and mislabeled on purpose. Surprisingly, Neural Networks
-manage to generalise very well, even after memorising label noise. However,
-their adversarial vulnerability takes a huge fall. In this thesis, we will study
-the nature of decision boundaries learnt by networks as they memorise label
-noise. Our attempt is to then utilise this knowledge to craft label noise, i.e.,
-select points to flip in a dataset, in order to maximise the adversarial
-vulnerability of networks trained on it. The number of points we can select to
-label-flip is naturally constrained by a budget. 
+manage to generalise very well, even after memorising label noise
+\citep{belkin2018understand}. However, their adversarial vulnerability takes a
+huge fall \citep{sanyal2021how}. In this thesis, we will study the nature of
+decision boundaries learnt by networks as they memorise label noise. Our attempt
+is to then utilise this knowledge to craft label noise, i.e., select points to
+flip in a dataset, in order to maximise the adversarial vulnerability of
+networks trained on it. The number of points we can select to label-flip is
+naturally constrained by a budget. 
 
 We first extend a previous theoretical result regarding uniform label noise with
 Lipschitzness assumptions and discuss an example where Lipschitzness hurts the
