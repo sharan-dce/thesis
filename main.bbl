@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -102,6 +102,16 @@ Andrew Ilyas, Logan Engstrom, and Aleksander Madry.
   {ICLR} 2019, New Orleans, LA, USA, May 6-9, 2019}. OpenReview.net, 2019.
 \newblock URL \url{https://openreview.net/forum?id=BkMiWhR5K7}.
 
+\bibitem[Ioffe and Szegedy(2015)]{batch-norm}
+Sergey Ioffe and Christian Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock In Francis~R. Bach and David~M. Blei, editors, \emph{Proceedings of
+  the 32nd International Conference on Machine Learning, {ICML} 2015, Lille,
+  France, 6-11 July 2015}, volume~37 of \emph{{JMLR} Workshop and Conference
+  Proceedings}, pages 448--456. JMLR.org, 2015.
+\newblock URL \url{http://proceedings.mlr.press/v37/ioffe15.html}.
+
 \bibitem[Kingma and Ba(2015)]{Adam}
 Diederik~P. Kingma and Jimmy Ba.
 \newblock Adam: {A} method for stochastic optimization.
@@ -154,6 +164,12 @@ Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and
 Alex Nichol, Joshua Achiam, and J.~Schulman.
 \newblock On first-order meta-learning algorithms.
 \newblock \emph{ArXiv}, abs/1803.02999, 2018.
+
+\bibitem[Rahaman et~al.(2019)Rahaman, Baratin, Arpit, Draxler, Lin, Hamprecht,
+  Bengio, and Courville]{rahaman2019spectral}
+Nasim Rahaman, Aristide Baratin, Devansh Arpit, Felix Draxler, Min Lin, Fred~A.
+  Hamprecht, Yoshua Bengio, and Aaron Courville.
+\newblock On the spectral bias of neural networks, 2019.
 
 \bibitem[Rosenfeld et~al.(2020)Rosenfeld, Winston, Ravikumar, and
   Kolter]{certified-robustness}

@@ -9,45 +9,45 @@ Warning--empty journal in dominating-set
 Warning--empty year in dominating-set
 Warning--empty year in dominating-set
 Warning--empty booktitle in adv-vuln-in-mission-critical
-You've used 31 entries,
+You've used 33 entries,
             2773 wiz_defined-function locations,
-            797 strings with 14269 characters,
-and the built_in function-call counts, 20928 in all, are:
-= -- 1760
-> -- 1768
-< -- 16
-+ -- 585
-- -- 554
-* -- 1929
-:= -- 3267
-add.period$ -- 131
-call.type$ -- 31
-change.case$ -- 269
-chr.to.int$ -- 31
-cite$ -- 69
-duplicate$ -- 790
-empty$ -- 1331
-format.name$ -- 586
-if$ -- 4348
+            810 strings with 14855 characters,
+and the built_in function-call counts, 22236 in all, are:
+= -- 1872
+> -- 1872
+< -- 19
++ -- 619
+- -- 586
+* -- 2041
+:= -- 3463
+add.period$ -- 138
+call.type$ -- 33
+change.case$ -- 285
+chr.to.int$ -- 33
+cite$ -- 73
+duplicate$ -- 839
+empty$ -- 1419
+format.name$ -- 622
+if$ -- 4627
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 31
-newline$ -- 191
-num.names$ -- 136
-pop$ -- 540
+missing$ -- 32
+newline$ -- 201
+num.names$ -- 146
+pop$ -- 576
 preamble$ -- 1
-purify$ -- 238
+purify$ -- 252
 quote$ -- 0
-skip$ -- 686
+skip$ -- 736
 stack$ -- 0
-substring$ -- 520
-swap$ -- 155
-text.length$ -- 15
+substring$ -- 556
+swap$ -- 169
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 341
+type$ -- 363
 warning$ -- 6
-while$ -- 132
+while$ -- 142
 width$ -- 0
-write$ -- 469
+write$ -- 496
 (There were 6 warnings)
