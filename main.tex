@@ -88,31 +88,33 @@ when label-flipped, hurt the adversarial accuracy of trained networks massively.
 
 \section{The Problem}
 
-Deep Neural Networks (DNNs) have gained a lot of popularity in the Machine
-Learning Community. The fact that they are universal approximators
+Deep Neural Networks (DNNs) have gained a lot of popularity in the machine
+learning community. The fact that they are universal approximators
 \citep{hornik1989multilayer}, coupled with the development of good training
-algorithms, an abundance of data and powerful hardware, are some factors that
+algorithms and an abundance of data and powerful hardware, are some factors that
 have contributed to their popularity. These have helped deep learning achieve
 the state of the art in many tasks, from computer vision \citep{imagenet}, to
 machine translation \citep{seq2seq,attention-is-all-you-need}, to achieving
 superhuman performance in board and computer games \citep{alpha-zero,
 starcraft}. However, the reliability of neural networks is still in question.
 The work of \citet{42503} opened up a new line of research on the robustness of
-neural networks. Neural Networks seem to be sensitive to small perturbations in
-the input.
+neural networks against adversarial perturbations. Neural Networks seem to be
+sensitive to small changes in the input.
 
 Recent works \citep{belkin2018understand,DBLP:journals/cacm/ZhangBHRV21} have
 pointed out that several over-parameterised machine learning models can memorise
 label noise (mislabeled points), which is surprisingly already present in widely
-used datasets \citep{sanyal2021how} such as MNIST and CIFAR-10, without showing
-a noticeable drop in their test accuracies. This has been investigated with
-artificially induced label noise in standard datasets as well
-\citep{sanyal2021how}, and is referred to as \emph{benign overfitting}.
+used datasets \citep{sanyal2021how} such as MNIST
+\citep{lecun-mnisthandwrittendigit-2010} and CIFAR-10
+\citep{Krizhevsky09learningmultiple}, without showing a noticeable drop in their
+test accuracies. This has been investigated with artificially induced label
+noise in standard datasets as well \citep{DBLP:journals/cacm/ZhangBHRV21}, and
+is referred to as \emph{benign overfitting}.
 
 However, memorising noisy data does come with downsides. \citet{sanyal2021how}
 investigated the consequences of memorising \emph{uniform} label noise on the
 adversarial error of the model. They showed that the adversarial error increases
-in the presence of such label noise, because the model becomes increasingly
+in the presence of such label noise because the model becomes increasingly
 vulnerable in regions where a wrong label has been memorised. So, a model that
 is trained on data with label noise might perform very well on unseen test data,
 but it will be highly adversarially vulnerable, much more than what a model
@@ -155,9 +157,9 @@ point vulnerable.
 \section{Contributions}
 Our contributions in this thesis are threefold:
 \begin{enumerate}
-    \item Extending a previous theoretical result on benign overfitting, with
-    added Lipschitzness assumptions on networks, in the context of uniform label
-    noise.
+    \item Extending a previous theoretical result on the adversarial risk of
+    classifiers memorising data with label noise, with added Lipschitzness
+    assumptions on the classifiers, in the context of uniform label noise.
     \item Showing that placing mislabeled points at the highest probability
     density regions does not hurt adversarial vulnerability, indicating that the
     proven theoretical bound in literature is vacuous in practice.
@@ -613,7 +615,7 @@ for a targeted attack. The sign function is given by:
 \end{equation*}
 and the above function is overloaded to vectors as an elementwise operation. The
 sign of gradients, scaled by $\epsilon$ are used for updates to ensure that the
-steps taken are small.
+perturbation added is small.
 
 
 \subsection{Projected Gradient Descent}
@@ -1187,19 +1189,26 @@ an $l_\infty$-PGD adversary with attack radius $0.2$.
 \chapter{Experimental results}
 \label{chapter:experiments}
 
-\section{Toy Distribution}
-
 The initial experiments we tried were based on the idea that placing mislabeled
 points in areas where high probability mass is present in the vicinity might be
 optimal. These experiments are discussed in Chapter \ref{chapter:failed-exp}.
-This idea does not work. To develop a better understanding of how neural
-networks fit mislabeled points, what exactly is the cause of the huge drop in
-their vulnerability when \emph{random} label noise is introduced into the
-dataset, and also why the highest probability density regions are not the best
-to label-flip, we carry out some controlled experiments in this chapter. After
-that, we focus on experiments on MNIST. Some of the following experiments
-utilize a toy dataset which consists of two classes, with the instance space
-being $\mathbb{R}^d$. $n$ samples are generated from the gaussian mixture
+This idea does not work. In this chapter, we systematically study the effect of
+mislabeled points on the adversarial accuracy of DNNs, for a toy dataset.
+Studying the problem on a toy dataset provides great control since we are aware
+of the data distribution, and we can \emph{place} mislabeled points rather than
+flipping points from sampled training sets. After that, we move to experiments
+on MNIST.
+
+\section{Toy Distribution}
+
+To develop a better understanding of how neural networks fit mislabeled points,
+what exactly is the cause of the huge drop in their adversarial accuracy when
+\emph{random} label noise is introduced into the dataset, and also why the
+highest probability density regions are not the best to label-flip, we carry out
+some controlled experiments in this chapter. Some of the following experiments
+utilise a toy dataset which consists of two classes, with the instance space
+being $\mathbb{R}^d$. To create the training set, $n$ samples are generated from
+the gaussian mixture
 
 \begin{equation*}
     \mathcal{P}_\text{toy}(\vec{x})=\frac{1}{2} \mathcal{N}(\vec{x}|-\mu \vec{1}_d,
@@ -1208,7 +1217,7 @@ being $\mathbb{R}^d$. $n$ samples are generated from the gaussian mixture
 and labelled with the ground truth labeling function 
 \begin{equation*}
     c_\text{toy}(\vec{x}) = \llbracket
-    \vec{x}^T.\vec{1_d} \geq 0 \rrbracket 
+    \vec{x}^T \cdot\vec{1_d} \geq 0 \rrbracket 
 \end{equation*}
 to create a dataset, where $\mathcal{N}(\cdot \mid \vec{m}, \Sigma)$ refers to
 the normal distribution with mean $\vec{m}$ and covariance matrix $\Sigma$. This
@@ -1234,23 +1243,24 @@ sampling process. This is to have greater control over toy experiments. Figure
 \subsection{Toy distribution with points far away from the decision boundary}
 
 Here, we aim to study the vulnerability of networks when $\mu \gg \sigma$. The
-decision boundary given by $\vec{x}^T.\vec{1_d} = 0$ is far away from where the
-points are located. For now, this notion of being far away is not well defined.
-But what we want to study is the effect on the adversarial vulnerability of
-networks when poisons are very far away from the boundary that these networks
-would have learnt otherwise in the absence of poisons. This decision boundary
-that the classifier would have learnt in the absence of mislabeled points will
-be refered to as the \emph{natural boundary}. We attempt to keep the boundary
-far away so that the networks do not stretch the natural boundary in order to
-accommodate poisons. The networks should be learning pockets around mislabeled
-points where they give the wrong answer. It is a valid question as to how we
-might know whether the affect we want to avoid is actually not happening, and
-that networks are learning pockets around mislabeled points. For this, we found
-an experimental trick: mislabeling points to a third, new class that is not
-present in the dataset. Since this class is not present in the training set,
-when the network memorises them, it cannot stretch the natural decision boundary
-to do so. The training setup for this case, with the new class introduced, is
-the exact same, with one extra logit added to the output layer of the network.
+decision boundary given by $\vec{x}^T\cdot\vec{1_d} = 0$ is far away from where
+the points are located. For now, this notion of being far away is not well
+defined. But what we want to study is the effect on the adversarial
+vulnerability of networks when poisons are very far away from the boundary that
+these networks would have learnt otherwise in the absence of poisons. This
+decision boundary that the classifier would have learnt in the absence of
+mislabeled points will be refered to as the \emph{natural boundary}. We attempt
+to keep the boundary far away so that the networks do not stretch the natural
+boundary in order to accommodate poisons. The networks should be learning
+pockets around mislabeled points where they give the wrong answer. It is a valid
+question as to how we might know whether the effect we want to avoid is actually
+not happening, and that networks are learning pockets around mislabeled points.
+For this, we resort to an experimental trick: mislabeling points to a third, new
+class that is not present in the dataset. Since this class is not present in the
+original training set, when the network memorises mislabeled points, it cannot
+stretch the natural decision boundary to do so. The training setup for this
+case, with the new class introduced, is the exact same with one extra logit
+added to the output layer of the network.
 
 \begin{figure}[!h]
     \centering
@@ -1277,30 +1287,30 @@ using an $l_\infty$ PGD adversary, with an attack radius of 0.2.
 
 Figure \ref{fig:far-gaussian-curve} shows the results of two runs ($d=16, b=2,
 \sigma^2=1, \mu=10$) with 64 points in the training set (including the
-mislabeled points). We fit networks to different toy datasets with the $r$
-parameter being varied. Reiterating, $r$ is the distance from the means from
-which the mislabeled points are placed (in this case, 2 mislabeled points per
-class). The results are summarised as follows:
+mislabeled points). We fit networks to different toy datasets while varying $r$.
+Reiterating, $r$ is the distance from the means from which the mislabeled points
+are placed (in this case, 2 mislabeled points per class). The experimental
+details and results are summarised as follows:
 
 % \todo{what is the experiment ??}
 \begin{enumerate}
     \item Two data points with label $0$ were placed near $\mu\vec{1}_d$ and two
-    points labelled with $1$ were placed near $-\mu\vec{1}_d$. Classifiers were
-    then trained to overfit to this dataset (achieve 100\% training accuracy).
-    The curve shows that adversarial accuracy first decreases and then
-    increases, as poisons are placed farther and farther away from the means of
-    the Gaussians. This is even more evidence for the conjecture that placing
-    mislabeled points in the highest probability density regions does not hurt
-    the adversarial accuracy by the largest factor.
-    \item The above experiment was repeated, but the label-flipping is done to a
-    third, new class. This was to see whether the drop in adversarial accuracy
+    data points labelled with $1$ were placed near $-\mu\vec{1}_d$. Classifiers
+    were then trained to overfit to this dataset (achieve 100\% training
+    accuracy). \cref{fig:far-gaussian-curve} shows that adversarial accuracy
+    first decreases and then increases, as poisons are placed farther away from
+    the means of the Gaussians. This supports the conjecture that placing
+    mislabeled points in the highest probability density regions is not optimal
+    to hurt the adversarial accuracy.
+    \item The above experiment was repeated but the label-flipping was done to a
+    third new class. This was to see whether the drop in adversarial accuracy
     primarily stems from learning more complex decision boundaries in the first
     experiment where the poisons were labeled with the opposite class, or the
     vulnerability is equally bad when the classifier has to learn new regions
-    with the third class as the label. The curve obtained in this case is very
+    with the third class as the label. The plot obtained in this case is very
     similar to the previous experiment, indicating that regions memorised to be
     of the opposite class is not worse for the adversarial accuracy, in
-    comparison to the case where the network is forced to memorise new regions
+    comparison to the case where the network is forced to memorise new regions.
     % \todo{Describe the results here and their significance}
 \end{enumerate}
 

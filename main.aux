@@ -27,7 +27,9 @@
 \citation{42503}
 \citation{belkin2018understand,DBLP:journals/cacm/ZhangBHRV21}
 \citation{sanyal2021how}
-\citation{sanyal2021how}
+\citation{lecun-mnisthandwrittendigit-2010}
+\citation{Krizhevsky09learningmultiple}
+\citation{DBLP:journals/cacm/ZhangBHRV21}
 \citation{sanyal2021how}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{6}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -126,84 +128,84 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Toy distribution with points far away from the decision boundary}{29}{subsection.4.1.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces \color@fb@x {}{orange}{}{orange}{\rule  {0pt}{3pt}\rule  {3pt}{0pt}} is the test accuracy \color@fb@x {}{blue}{}{blue}{\rule  {0pt}{3pt}\rule  {3pt}{0pt}} is the adversarial accuracy. $r$ axis represents the distance from the means of the gaussians where mislabelled points (poisons) were placed. Setting wrong labels to a third class produces a curve very similar to the case where labels were set to the opposite class for poisons. Multiple models were trained, and randomisation was also done on the poisons placed for each run, which is what the confidence intervals and mean curves are representative of.\relax }}{30}{figure.caption.10}\protected@file@percent }
 \newlabel{fig:far-gaussian-curve}{{4.2}{30}{\fcolorbox {orange}{orange}{\rule {0pt}{3pt}\rule {3pt}{0pt}} is the test accuracy \fcolorbox {blue}{blue}{\rule {0pt}{3pt}\rule {3pt}{0pt}} is the adversarial accuracy. $r$ axis represents the distance from the means of the gaussians where mislabelled points (poisons) were placed. Setting wrong labels to a third class produces a curve very similar to the case where labels were set to the opposite class for poisons. Multiple models were trained, and randomisation was also done on the poisons placed for each run, which is what the confidence intervals and mean curves are representative of.\relax }{figure.caption.10}{}}
-\newlabel{fig:far-gaussian-curve@cref}{{[figure][2][4]4.2}{[1][29][]30}}
+\newlabel{fig:far-gaussian-curve@cref}{{[figure][2][4]4.2}{[1][30][]30}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Toy distribution with points close to the decision boundary}{31}{subsection.4.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces $d=64, b=2, \sigma ^2=1.0$; $2$ mislabeled points were placed per class. As before, randomisation is over training multiple models with different initialisations, and placing poisons randomly sampled at a given distance $r$ from the means.\relax }}{32}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:poison-toy-experiments}{{4.3}{32}{$d=64, b=2, \sigma ^2=1.0$; $2$ mislabeled points were placed per class. As before, randomisation is over training multiple models with different initialisations, and placing poisons randomly sampled at a given distance $r$ from the means.\relax }{figure.caption.11}{}}
-\newlabel{fig:poison-toy-experiments@cref}{{[figure][3][4]4.3}{[1][32][]32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces $d=64, b=2, \sigma ^2=1.0$; $2$ mislabeled points were placed per class. As before, randomisation is over training multiple models with different initialisations, and placing poisons randomly sampled at a given distance $r$ from the means.\relax }}{33}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:poison-toy-experiments}{{4.3}{33}{$d=64, b=2, \sigma ^2=1.0$; $2$ mislabeled points were placed per class. As before, randomisation is over training multiple models with different initialisations, and placing poisons randomly sampled at a given distance $r$ from the means.\relax }{figure.caption.11}{}}
+\newlabel{fig:poison-toy-experiments@cref}{{[figure][3][4]4.3}{[1][32][]33}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}The worst poisons are not the ones producing pockets with the wrong label}{33}{section.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Flipping to an 11th class in MNIST}{33}{subsection.4.2.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Adversarial Accuracies of networks when poisoning is done to a new class compared to the case when poisoning is done to the next class cyclically. The accuracy was evaluated against an $l_\infty $ PGD adversary with an attack radius of $0.1$. Randomisation in the above results is over model initialisation. For each run, the same points in MNIST are label-flipped.\relax }}{34}{table.caption.12}\protected@file@percent }
 \newlabel{table:mnist-class-10}{{4.1}{34}{Adversarial Accuracies of networks when poisoning is done to a new class compared to the case when poisoning is done to the next class cyclically. The accuracy was evaluated against an $l_\infty $ PGD adversary with an attack radius of $0.1$. Randomisation in the above results is over model initialisation. For each run, the same points in MNIST are label-flipped.\relax }{table.caption.12}{}}
-\newlabel{table:mnist-class-10@cref}{{[table][1][4]4.1}{[1][33][]34}}
+\newlabel{table:mnist-class-10@cref}{{[table][1][4]4.1}{[1][34][]34}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Analysis using adversarial paths}{34}{section.4.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces The above figure shows two different ways in which a classifier could memorise a mislabeled point. If the decision boundary is tweaked to accommodate a mislabeled point, it could lead to much higher adversarial errors, compared to the other case.\relax }}{34}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:pockets-or-tweaks}{{4.4}{34}{The above figure shows two different ways in which a classifier could memorise a mislabeled point. If the decision boundary is tweaked to accommodate a mislabeled point, it could lead to much higher adversarial errors, compared to the other case.\relax }{figure.caption.13}{}}
 \newlabel{fig:pockets-or-tweaks@cref}{{[figure][4][4]4.4}{[1][34][]34}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Finding a path from a point to the boundary}{35}{subsection.4.3.1}\protected@file@percent }
-\newlabel{subfig:close}{{4.5a}{36}{Subfigure 4 4.5a}{subfigure.4.5.1}{}}
-\newlabel{subfig:close@cref}{{[subfigure][1][4,5]4.5a}{[1][36][]36}}
-\newlabel{sub@subfig:close}{{(a)}{a}{Subfigure 4 4.5a\relax }{subfigure.4.5.1}{}}
-\newlabel{subfig:far}{{4.5b}{36}{Subfigure 4 4.5b}{subfigure.4.5.2}{}}
-\newlabel{subfig:far@cref}{{[subfigure][2][4,5]4.5b}{[1][36][]36}}
-\newlabel{sub@subfig:far}{{(b)}{b}{Subfigure 4 4.5b\relax }{subfigure.4.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces After finding out the adversarial paths from each training point to the decision boundary of a model trained on MNIST, we visualized some points closest to and farthest from the decision boundary. Examples pertaining to each class have been put on different rows: 0 to 9 from top to bottom. Note that the path to the next class was found by untargeted-unbounded-gradient-ascent, which is why label noise is such that some of the 0s look like 1s, 1s like 2s, and so on. Constratingly, the images on the right are far away from the boundary, again evaluated in a targeted manner. These images seem very crisp.\relax }}{36}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:pgd-path-examples}{{4.5}{36}{After finding out the adversarial paths from each training point to the decision boundary of a model trained on MNIST, we visualized some points closest to and farthest from the decision boundary. Examples pertaining to each class have been put on different rows: 0 to 9 from top to bottom. Note that the path to the next class was found by untargeted-unbounded-gradient-ascent, which is why label noise is such that some of the 0s look like 1s, 1s like 2s, and so on. Constratingly, the images on the right are far away from the boundary, again evaluated in a targeted manner. These images seem very crisp.\relax }{figure.caption.14}{}}
-\newlabel{fig:pgd-path-examples@cref}{{[figure][5][4]4.5}{[1][36][]36}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Using adversarial paths to analyse poisons}{36}{subsection.4.3.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Targeted Unbounded Gradient Ascent\relax }}{37}{algorithm.2}\protected@file@percent }
-\newlabel{algorithm:unbounded-gd}{{8}{37}{Targeted Unbounded Gradient Ascent\relax }{algorithm.2}{}}
-\newlabel{algorithm:unbounded-gd@cref}{{[algorithm][2][]2}{[1][37][]37}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}The experiments}{37}{subsection.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{0-1 MNIST}{37}{section*.15}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Targeted Unbounded Gradient Ascent\relax }}{36}{algorithm.2}\protected@file@percent }
+\newlabel{algorithm:unbounded-gd}{{8}{36}{Targeted Unbounded Gradient Ascent\relax }{algorithm.2}{}}
+\newlabel{algorithm:unbounded-gd@cref}{{[algorithm][2][]2}{[1][36][]36}}
+\newlabel{subfig:close}{{4.5a}{37}{Subfigure 4 4.5a}{subfigure.4.5.1}{}}
+\newlabel{subfig:close@cref}{{[subfigure][1][4,5]4.5a}{[1][36][]37}}
+\newlabel{sub@subfig:close}{{(a)}{a}{Subfigure 4 4.5a\relax }{subfigure.4.5.1}{}}
+\newlabel{subfig:far}{{4.5b}{37}{Subfigure 4 4.5b}{subfigure.4.5.2}{}}
+\newlabel{subfig:far@cref}{{[subfigure][2][4,5]4.5b}{[1][36][]37}}
+\newlabel{sub@subfig:far}{{(b)}{b}{Subfigure 4 4.5b\relax }{subfigure.4.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces After finding out the adversarial paths from each training point to the decision boundary of a model trained on MNIST, we visualized some points closest to and farthest from the decision boundary. Examples pertaining to each class have been put on different rows: 0 to 9 from top to bottom. Note that the path to the next class was found by untargeted-unbounded-gradient-ascent, which is why label noise is such that some of the 0s look like 1s, 1s like 2s, and so on. Constratingly, the images on the right are far away from the boundary, again evaluated in a targeted manner. These images seem very crisp.\relax }}{37}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:pgd-path-examples}{{4.5}{37}{After finding out the adversarial paths from each training point to the decision boundary of a model trained on MNIST, we visualized some points closest to and farthest from the decision boundary. Examples pertaining to each class have been put on different rows: 0 to 9 from top to bottom. Note that the path to the next class was found by untargeted-unbounded-gradient-ascent, which is why label noise is such that some of the 0s look like 1s, 1s like 2s, and so on. Constratingly, the images on the right are far away from the boundary, again evaluated in a targeted manner. These images seem very crisp.\relax }{figure.caption.14}{}}
+\newlabel{fig:pgd-path-examples@cref}{{[figure][5][4]4.5}{[1][36][]37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}The experiments}{38}{subsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{0-1 MNIST}{38}{section*.15}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces (a) shows the distribution over the number of gradient ascent updates it took for the classifier to flip its output, for 0-1 MNIST, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. (b) The $x$ axis only denotes an ordinal value: higher values represent buckets holding points for which the adversarial paths were lengthier. The points were segregated into different buckets for (b), each bucket having points at a certain distance range from the boundary. The test accuracy of all of the above models are greater than 99\%.\relax }}{38}{figure.caption.16}\protected@file@percent }
 \newlabel{fig:0-1-mnist-pgd-path}{{4.6}{38}{(a) shows the distribution over the number of gradient ascent updates it took for the classifier to flip its output, for 0-1 MNIST, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. (b) The $x$ axis only denotes an ordinal value: higher values represent buckets holding points for which the adversarial paths were lengthier. The points were segregated into different buckets for (b), each bucket having points at a certain distance range from the boundary. The test accuracy of all of the above models are greater than 99\%.\relax }{figure.caption.16}{}}
-\newlabel{fig:0-1-mnist-pgd-path@cref}{{[figure][6][4]4.6}{[1][37][]38}}
-\@writefile{toc}{\contentsline {subsubsection}{MNIST}{38}{section*.17}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Distribution over the number of gradient ascent updates it took for the classifier to flip its output, for the full MNIST dataset, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. Note that for training points belonging to class ``1", it takes not more than 10 steps in these adversarial paths. This means that for an attack radius of $\epsilon =0.1$, almost the entire class must be vulnerable, which is indeed the case. The adversarial accuracy of the model trained on the clean dataset, on targeted attacks from 1 to 2 is 0.\relax }}{39}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:full-mnist-pgd-path}{{4.7}{39}{Distribution over the number of gradient ascent updates it took for the classifier to flip its output, for the full MNIST dataset, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. Note that for training points belonging to class ``1", it takes not more than 10 steps in these adversarial paths. This means that for an attack radius of $\epsilon =0.1$, almost the entire class must be vulnerable, which is indeed the case. The adversarial accuracy of the model trained on the clean dataset, on targeted attacks from 1 to 2 is 0.\relax }{figure.caption.18}{}}
-\newlabel{fig:full-mnist-pgd-path@cref}{{[figure][7][4]4.7}{[1][39][]39}}
+\newlabel{fig:0-1-mnist-pgd-path@cref}{{[figure][6][4]4.6}{[1][38][]38}}
+\@writefile{toc}{\contentsline {subsubsection}{MNIST}{39}{section*.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Distribution over the number of gradient ascent updates it took for the classifier to flip its output, for the full MNIST dataset, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. Note that for training points belonging to class ``1", it takes not more than 10 steps in these adversarial paths. This means that for an attack radius of $\epsilon =0.1$, almost the entire class must be vulnerable, which is indeed the case. The adversarial accuracy of the model trained on the clean dataset, on targeted attacks from 1 to 2 is 0.\relax }}{40}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:full-mnist-pgd-path}{{4.7}{40}{Distribution over the number of gradient ascent updates it took for the classifier to flip its output, for the full MNIST dataset, for the points in the training set. The $y$-axis indicates the number of points in the training set. The step size used for the above was 0.01, on $[0, 1]$ normalized input images. Note that for training points belonging to class ``1", it takes not more than 10 steps in these adversarial paths. This means that for an attack radius of $\epsilon =0.1$, almost the entire class must be vulnerable, which is indeed the case. The adversarial accuracy of the model trained on the clean dataset, on targeted attacks from 1 to 2 is 0.\relax }{figure.caption.18}{}}
+\newlabel{fig:full-mnist-pgd-path@cref}{{[figure][7][4]4.7}{[1][39][]40}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Full MNIST dataset. The $x$ axis only denotes an ordinal value: higher values represents represents buckets holding points for which the adversarial paths were lengthier. The orange line is a baseline showing the adversarial accuracy when same number of points are randomly selected to poison. The 3 graphs shown are for classes 1, 4, and 9 flipped to 2, 5, and 0 respectively. These classes are at increasing distances from the decision boundary: points in class 1 are very close, and points in class 9 are very far, class 4 being an intermediate case. The adversarial accuracy evaluation for each case is done using targeted attacks from classes 1, 4, and 9 to 2, 5, 0 respectively to study the effects of poisons. 10 poisons were placed per class for these runs. The test accuracy of all of the networks evaluated in the above diagram is more than 99\%.\relax }}{40}{figure.caption.19}\protected@file@percent }
 \newlabel{fig:full-MNIST-curve}{{4.8}{40}{Full MNIST dataset. The $x$ axis only denotes an ordinal value: higher values represents represents buckets holding points for which the adversarial paths were lengthier. The orange line is a baseline showing the adversarial accuracy when same number of points are randomly selected to poison. The 3 graphs shown are for classes 1, 4, and 9 flipped to 2, 5, and 0 respectively. These classes are at increasing distances from the decision boundary: points in class 1 are very close, and points in class 9 are very far, class 4 being an intermediate case. The adversarial accuracy evaluation for each case is done using targeted attacks from classes 1, 4, and 9 to 2, 5, 0 respectively to study the effects of poisons. 10 poisons were placed per class for these runs. The test accuracy of all of the networks evaluated in the above diagram is more than 99\%.\relax }{figure.caption.19}{}}
 \newlabel{fig:full-MNIST-curve@cref}{{[figure][8][4]4.8}{[1][39][]40}}
 \citation{maml,first-order-meta,forward-reverse-hyperparameter}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Future Work: A Meta-Learning Approach}{41}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Future Work: A Meta-Learning Approach}{42}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \citation{DBLP:conf/iclr/MaddisonMT17}
-\newlabel{eq:optimization}{{5.1}{42}{Future Work: A Meta-Learning Approach}{equation.5.0.1}{}}
-\newlabel{eq:optimization@cref}{{[equation][1][5]5.1}{[1][42][]42}}
-\newlabel{eq:optimization-prac}{{5.2}{42}{Future Work: A Meta-Learning Approach}{equation.5.0.2}{}}
-\newlabel{eq:optimization-prac@cref}{{[equation][2][5]5.2}{[1][42][]42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces An example of the multi-level optimisation case, where we have a small dataset of 8 examples, and two gradient updates are made in the innermost loop, with each batch update having 4 examples. The function get\_adversarial\_examples () produces adversarial exapmles for a given network and inputs. Dotted lines indicate that the operations are not to be recorded, and bold lines indicate that the operations should be recorded, so that we can pass gradients through them during the backward pass. $\odot $ refers to elementwise multiplication.\relax }}{44}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:bilevel-opt}{{5.1}{44}{An example of the multi-level optimisation case, where we have a small dataset of 8 examples, and two gradient updates are made in the innermost loop, with each batch update having 4 examples. The function get\_adversarial\_examples () produces adversarial exapmles for a given network and inputs. Dotted lines indicate that the operations are not to be recorded, and bold lines indicate that the operations should be recorded, so that we can pass gradients through them during the backward pass. $\odot $ refers to elementwise multiplication.\relax }{figure.caption.20}{}}
-\newlabel{fig:bilevel-opt@cref}{{[figure][1][5]5.1}{[1][43][]44}}
+\newlabel{eq:optimization}{{5.1}{43}{Future Work: A Meta-Learning Approach}{equation.5.0.1}{}}
+\newlabel{eq:optimization@cref}{{[equation][1][5]5.1}{[1][43][]43}}
+\newlabel{eq:optimization-prac}{{5.2}{43}{Future Work: A Meta-Learning Approach}{equation.5.0.2}{}}
+\newlabel{eq:optimization-prac@cref}{{[equation][2][5]5.2}{[1][43][]43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces An example of the multi-level optimisation case, where we have a small dataset of 8 examples, and two gradient updates are made in the innermost loop, with each batch update having 4 examples. The function get\_adversarial\_examples () produces adversarial exapmles for a given network and inputs. Dotted lines indicate that the operations are not to be recorded, and bold lines indicate that the operations should be recorded, so that we can pass gradients through them during the backward pass. $\odot $ refers to elementwise multiplication.\relax }}{45}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:bilevel-opt}{{5.1}{45}{An example of the multi-level optimisation case, where we have a small dataset of 8 examples, and two gradient updates are made in the innermost loop, with each batch update having 4 examples. The function get\_adversarial\_examples () produces adversarial exapmles for a given network and inputs. Dotted lines indicate that the operations are not to be recorded, and bold lines indicate that the operations should be recorded, so that we can pass gradients through them during the backward pass. $\odot $ refers to elementwise multiplication.\relax }{figure.caption.20}{}}
+\newlabel{fig:bilevel-opt@cref}{{[figure][1][5]5.1}{[1][44][]45}}
 \citation{sanyal2021how}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Early Unsuccessful Experiments}{45}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Early Unsuccessful Experiments}{46}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:failed-exp}{{6}{45}{Early Unsuccessful Experiments}{chapter.6}{}}
-\newlabel{chapter:failed-exp@cref}{{[chapter][6][]6}{[1][45][]45}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Building graphs on training points}{45}{section.6.1}\protected@file@percent }
+\newlabel{chapter:failed-exp}{{6}{46}{Early Unsuccessful Experiments}{chapter.6}{}}
+\newlabel{chapter:failed-exp@cref}{{[chapter][6][]6}{[1][46][]46}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Building graphs on training points}{46}{section.6.1}\protected@file@percent }
 \citation{dominating-set}
-\newlabel{def:class-graph}{{1}{46}{}{definition.1}{}}
-\newlabel{def:class-graph@cref}{{[definition][1][]1}{[1][46][]46}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Greedily Selecting vertices\relax }}{46}{algorithm.3}\protected@file@percent }
-\newlabel{alg:greedy-selection}{{3}{46}{Greedily Selecting vertices\relax }{algorithm.3}{}}
-\newlabel{alg:greedy-selection@cref}{{[algorithm][3][]3}{[1][46][]46}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces $(\qopname  \relax o{log}\Delta + 2)$-approximation to the dominating set problem\relax }}{47}{algorithm.4}\protected@file@percent }
-\newlabel{alg:log-delta}{{4}{47}{$(\log \Delta + 2)$-approximation to the dominating set problem\relax }{algorithm.4}{}}
-\newlabel{alg:log-delta@cref}{{[algorithm][4][]4}{[1][46][]47}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Building graphs on input space}{47}{subsection.6.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Figure showing the distribution of the inter-point distances in class 0 of the MNIST dataset\relax }}{48}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:inter-point-distances}{{6.1}{48}{Figure showing the distribution of the inter-point distances in class 0 of the MNIST dataset\relax }{figure.caption.22}{}}
-\newlabel{fig:inter-point-distances@cref}{{[figure][1][6]6.1}{[1][48][]48}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Using Low Rank representations}{48}{subsection.6.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Using the feature representations of a trained network}{48}{subsection.6.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Using the feature representations of a trained network as well as input space}{49}{subsection.6.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Min Coloring trick}{49}{section.6.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Idea behind using different color labels for each point in a specific class, and getting a network to memorise the assigned labels. The black lines show the decision boundaries learnt for the different colors, and red boxes show the points which are vulnerable because of a boundary passing through the $l_\infty $ balls around those points.\relax }}{50}{figure.caption.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{51}{chapter.7}\protected@file@percent }
+\newlabel{def:class-graph}{{1}{47}{}{definition.1}{}}
+\newlabel{def:class-graph@cref}{{[definition][1][]1}{[1][47][]47}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Greedily Selecting vertices\relax }}{47}{algorithm.3}\protected@file@percent }
+\newlabel{alg:greedy-selection}{{3}{47}{Greedily Selecting vertices\relax }{algorithm.3}{}}
+\newlabel{alg:greedy-selection@cref}{{[algorithm][3][]3}{[1][47][]47}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces $(\qopname  \relax o{log}\Delta + 2)$-approximation to the dominating set problem\relax }}{48}{algorithm.4}\protected@file@percent }
+\newlabel{alg:log-delta}{{4}{48}{$(\log \Delta + 2)$-approximation to the dominating set problem\relax }{algorithm.4}{}}
+\newlabel{alg:log-delta@cref}{{[algorithm][4][]4}{[1][47][]48}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Building graphs on input space}{48}{subsection.6.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Figure showing the distribution of the inter-point distances in class 0 of the MNIST dataset\relax }}{49}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:inter-point-distances}{{6.1}{49}{Figure showing the distribution of the inter-point distances in class 0 of the MNIST dataset\relax }{figure.caption.22}{}}
+\newlabel{fig:inter-point-distances@cref}{{[figure][1][6]6.1}{[1][49][]49}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Using Low Rank representations}{49}{subsection.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Using the feature representations of a trained network}{49}{subsection.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Using the feature representations of a trained network as well as input space}{50}{subsection.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Min Coloring trick}{50}{section.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Idea behind using different color labels for each point in a specific class, and getting a network to memorise the assigned labels. The black lines show the decision boundaries learnt for the different colors, and red boxes show the points which are vulnerable because of a boundary passing through the $l_\infty $ balls around those points.\relax }}{51}{figure.caption.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{52}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{plainnat}
@@ -223,31 +225,33 @@
 \bibcite{prior-conv}{{13}{2019}{{Ilyas et~al.}}{{Ilyas, Engstrom, and Madry}}}
 \bibcite{batch-norm}{{14}{2015}{{Ioffe and Szegedy}}{{}}}
 \bibcite{Adam}{{15}{2015}{{Kingma and Ba}}{{}}}
-\bibcite{imagenet}{{16}{2012}{{Krizhevsky et~al.}}{{Krizhevsky, Sutskever, and Hinton}}}
-\bibcite{neco.1989.1.4.541}{{17}{1989}{{LeCun et~al.}}{{LeCun, Boser, Denker, Henderson, Howard, Hubbard, and Jackel}}}
-\bibcite{DBLP:conf/iclr/MaddisonMT17}{{18}{2017}{{Maddison et~al.}}{{Maddison, Mnih, and Teh}}}
-\bibcite{madry2019deep}{{19}{2018}{{Madry et~al.}}{{Madry, Makelov, Schmidt, Tsipras, and Vladu}}}
-\bibcite{first-order-meta}{{20}{2018}{{Nichol et~al.}}{{Nichol, Achiam, and Schulman}}}
-\bibcite{rahaman2019spectral}{{21}{2019}{{Rahaman et~al.}}{{Rahaman, Baratin, Arpit, Draxler, Lin, Hamprecht, Bengio, and Courville}}}
-\bibcite{certified-robustness}{{22}{2020}{{Rosenfeld et~al.}}{{Rosenfeld, Winston, Ravikumar, and Kolter}}}
-\bibcite{hidden-trigger-backdoor}{{23}{2020}{{Saha et~al.}}{{Saha, Subramanya, and Pirsiavash}}}
-\bibcite{sanyal2021how}{{24}{2021}{{Sanyal et~al.}}{{Sanyal, Kanade, Dokania, and Torr}}}
-\bibcite{just-how-toxic}{{25}{2020}{{Schwarzschild et~al.}}{{Schwarzschild, Goldblum, Gupta, Dickerson, and Goldstein}}}
-\bibcite{alpha-zero}{{26}{2017}{{Silver et~al.}}{{Silver, Schrittwieser, Simonyan, Antonoglou, Huang, Guez, Hubert, Baker, Lai, Bolton, Chen, Lillicrap, Hui, Sifre, Driessche, Graepel, and Hassabis}}}
-\bibcite{seq2seq}{{27}{2014}{{Sutskever et~al.}}{{Sutskever, Vinyals, and Le}}}
-\bibcite{42503}{{28}{2014}{{Szegedy et~al.}}{{Szegedy, Zaremba, Sutskever, Bruna, Erhan, Goodfellow, and Fergus}}}
-\bibcite{attention-is-all-you-need}{{29}{2017}{{Vaswani et~al.}}{{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin}}}
-\bibcite{starcraft}{{30}{2019}{{Vinyals et~al.}}{{Vinyals, Babuschkin, Czarnecki, Mathieu, Dudzik, Chung, Choi, Powell, Ewalds, Georgiev, Oh, Horgan, Kroiss, Danihelka, Huang, Sifre, Cai, Agapiou, Jaderberg, Vezhnevets, Leblond, Pohlen, Dalibard, Budden, Sulsky, Molloy, Paine, G{\"{u}}l{\c {c}}ehre, Wang, Pfaff, Wu, Ring, Yogatama, W{\"{u}}nsch, McKinney, Smith, Schaul, Lillicrap, Kavukcuoglu, Hassabis, Apps, and Silver}}}
-\bibcite{label-flip-SVMs}{{31}{2012}{{Xiao et~al.}}{{Xiao, Xiao, and Eckert}}}
-\bibcite{DBLP:journals/cacm/ZhangBHRV21}{{32}{2021}{{Zhang et~al.}}{{Zhang, Bengio, Hardt, Recht, and Vinyals}}}
-\bibcite{transferable-clean-label-poisoning}{{33}{2019}{{Zhu et~al.}}{{Zhu, Huang, Li, Taylor, Studer, and Goldstein}}}
-\@writefile{toc}{\contentsline {chapter}{Appendices}{58}{section*.25}\protected@file@percent }
+\bibcite{Krizhevsky09learningmultiple}{{16}{2009}{{Krizhevsky}}{{}}}
+\bibcite{imagenet}{{17}{2012}{{Krizhevsky et~al.}}{{Krizhevsky, Sutskever, and Hinton}}}
+\bibcite{neco.1989.1.4.541}{{18}{1989}{{LeCun et~al.}}{{LeCun, Boser, Denker, Henderson, Howard, Hubbard, and Jackel}}}
+\bibcite{lecun-mnisthandwrittendigit-2010}{{19}{2010}{{LeCun and Cortes}}{{}}}
+\bibcite{DBLP:conf/iclr/MaddisonMT17}{{20}{2017}{{Maddison et~al.}}{{Maddison, Mnih, and Teh}}}
+\bibcite{madry2019deep}{{21}{2018}{{Madry et~al.}}{{Madry, Makelov, Schmidt, Tsipras, and Vladu}}}
+\bibcite{first-order-meta}{{22}{2018}{{Nichol et~al.}}{{Nichol, Achiam, and Schulman}}}
+\bibcite{rahaman2019spectral}{{23}{2019}{{Rahaman et~al.}}{{Rahaman, Baratin, Arpit, Draxler, Lin, Hamprecht, Bengio, and Courville}}}
+\bibcite{certified-robustness}{{24}{2020}{{Rosenfeld et~al.}}{{Rosenfeld, Winston, Ravikumar, and Kolter}}}
+\bibcite{hidden-trigger-backdoor}{{25}{2020}{{Saha et~al.}}{{Saha, Subramanya, and Pirsiavash}}}
+\bibcite{sanyal2021how}{{26}{2021}{{Sanyal et~al.}}{{Sanyal, Kanade, Dokania, and Torr}}}
+\bibcite{just-how-toxic}{{27}{2020}{{Schwarzschild et~al.}}{{Schwarzschild, Goldblum, Gupta, Dickerson, and Goldstein}}}
+\bibcite{alpha-zero}{{28}{2017}{{Silver et~al.}}{{Silver, Schrittwieser, Simonyan, Antonoglou, Huang, Guez, Hubert, Baker, Lai, Bolton, Chen, Lillicrap, Hui, Sifre, Driessche, Graepel, and Hassabis}}}
+\bibcite{seq2seq}{{29}{2014}{{Sutskever et~al.}}{{Sutskever, Vinyals, and Le}}}
+\bibcite{42503}{{30}{2014}{{Szegedy et~al.}}{{Szegedy, Zaremba, Sutskever, Bruna, Erhan, Goodfellow, and Fergus}}}
+\bibcite{attention-is-all-you-need}{{31}{2017}{{Vaswani et~al.}}{{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin}}}
+\bibcite{starcraft}{{32}{2019}{{Vinyals et~al.}}{{Vinyals, Babuschkin, Czarnecki, Mathieu, Dudzik, Chung, Choi, Powell, Ewalds, Georgiev, Oh, Horgan, Kroiss, Danihelka, Huang, Sifre, Cai, Agapiou, Jaderberg, Vezhnevets, Leblond, Pohlen, Dalibard, Budden, Sulsky, Molloy, Paine, G{\"{u}}l{\c {c}}ehre, Wang, Pfaff, Wu, Ring, Yogatama, W{\"{u}}nsch, McKinney, Smith, Schaul, Lillicrap, Kavukcuoglu, Hassabis, Apps, and Silver}}}
+\bibcite{label-flip-SVMs}{{33}{2012}{{Xiao et~al.}}{{Xiao, Xiao, and Eckert}}}
+\bibcite{DBLP:journals/cacm/ZhangBHRV21}{{34}{2021}{{Zhang et~al.}}{{Zhang, Bengio, Hardt, Recht, and Vinyals}}}
+\bibcite{transferable-clean-label-poisoning}{{35}{2019}{{Zhu et~al.}}{{Zhu, Huang, Li, Taylor, Studer, and Goldstein}}}
+\@writefile{toc}{\contentsline {chapter}{Appendices}{59}{section*.25}\protected@file@percent }
 \citation{rahaman2019spectral}
 \citation{batch-norm}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Fitting Neural Networks to low dimensional data}{59}{section.7.1}\protected@file@percent }
-\newlabel{lst:hash}{{7.1}{59}{Function used to map data points $\in \mathbb {R}^d$ to bit sequences that are shown to the network. BITS is a hyperparameter such that $2^\text {BITS} > P$}{lstlisting.7.1}{}}
-\newlabel{lst:hash@cref}{{[listing][1][7]7.1}{[1][59][]59}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {7.1}Function used to map data points $\in \mathbb  {R}^d$ to bit sequences that are shown to the network. BITS is a hyperparameter such that $2^\text  {BITS} > P$.}{59}{lstlisting.7.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Map showing a DNN classifier's decision boundaries and data points when the classifier is shown points after passing through the aforementioned function. The two classes are in red and blue, and green is the third class that poisons were labelled with.\relax }}{60}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:hash-trick}{{7.1}{60}{Map showing a DNN classifier's decision boundaries and data points when the classifier is shown points after passing through the aforementioned function. The two classes are in red and blue, and green is the third class that poisons were labelled with.\relax }{figure.caption.26}{}}
-\newlabel{fig:hash-trick@cref}{{[figure][1][7]7.1}{[1][59][]60}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Fitting Neural Networks to low dimensional data}{60}{section.7.1}\protected@file@percent }
+\newlabel{lst:hash}{{7.1}{60}{Function used to map data points $\in \mathbb {R}^d$ to bit sequences that are shown to the network. BITS is a hyperparameter such that $2^\text {BITS} > P$}{lstlisting.7.1}{}}
+\newlabel{lst:hash@cref}{{[listing][1][7]7.1}{[1][60][]60}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7.1}Function used to map data points $\in \mathbb  {R}^d$ to bit sequences that are shown to the network. BITS is a hyperparameter such that $2^\text  {BITS} > P$.}{60}{lstlisting.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Map showing a DNN classifier's decision boundaries and data points when the classifier is shown points after passing through the aforementioned function. The two classes are in red and blue, and green is the third class that poisons were labelled with.\relax }}{61}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:hash-trick}{{7.1}{61}{Map showing a DNN classifier's decision boundaries and data points when the classifier is shown points after passing through the aforementioned function. The two classes are in red and blue, and green is the third class that poisons were labelled with.\relax }{figure.caption.26}{}}
+\newlabel{fig:hash-trick@cref}{{[figure][1][7]7.1}{[1][60][]61}}

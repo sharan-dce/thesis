@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -120,6 +120,11 @@ Diederik~P. Kingma and Jimmy Ba.
   7-9, 2015, Conference Track Proceedings}, 2015.
 \newblock URL \url{http://arxiv.org/abs/1412.6980}.
 
+\bibitem[Krizhevsky(2009)]{Krizhevsky09learningmultiple}
+Alex Krizhevsky.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, 2009.
+
 \bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and Hinton]{imagenet}
 Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
 \newblock Imagenet classification with deep convolutional neural networks.
@@ -139,6 +144,12 @@ Y.~LeCun, B.~Boser, J.~S. Denker, D.~Henderson, R.~E. Howard, W.~Hubbard, and
 \newblock ISSN 0899-7667.
 \newblock \doi{10.1162/neco.1989.1.4.541}.
 \newblock URL \url{https://doi.org/10.1162/neco.1989.1.4.541}.
+
+\bibitem[LeCun and Cortes(2010)]{lecun-mnisthandwrittendigit-2010}
+Yann LeCun and Corinna Cortes.
+\newblock {MNIST} handwritten digit database.
+\newblock 2010.
+\newblock URL \url{http://yann.lecun.com/exdb/mnist/}.
 
 \bibitem[Maddison et~al.(2017)Maddison, Mnih, and
   Teh]{DBLP:conf/iclr/MaddisonMT17}
