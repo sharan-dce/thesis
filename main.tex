@@ -539,14 +539,15 @@ problems.
     \label{fig:adversarial-example-5}
 \end{figure}
 
-\section{Standard attacks for DNNs in literature}
+\section{Standard attacks on DNNs in literature}
 \label{section:standard-attacks}
 
-Here, we discuss 2 popular attack techniques in literature. When we use the term
-\emph{attack}, the problem we attempt to solve is finding an adversarial
-example, i.e., given a point sampled from the data distribution, we are to find
-out a point within an $l_p$ ball (of some radius $\rho$) around that point, such
-that the model gives the wrong output for that point. For a \emph{targeted
+Here, we discuss 2 popular adversarial attack techniques in literature. When we
+use the term \emph{attack}, the problem we attempt to solve is finding an
+adversarial example, i.e., given a point $\vec{x}$ sampled from the data
+distribution, we are to find out a point $\vec{x'}$ within an $l_p$ ball (of
+some radius $\rho$) around $\vec{x}$, such that the model gives the wrong output
+$y \in \Omega \setminus \{c(\vec{x})\}$ for $\vec{x'}$. For a \emph{targeted
 attack}, given a point $\vec{x}$ with label $c(\vec{x})$ from the data
 distribution, we are to find a point $\vec{x'}$ inside an $l_p$ ball of certain
 radius around $\vec{x}$, such that the model classifies $\vec{x'}$ as a target
@@ -1297,7 +1298,7 @@ details and results are summarised as follows:
     \item Two data points with label $0$ were placed near $\mu\vec{1}_d$ and two
     data points labelled with $1$ were placed near $-\mu\vec{1}_d$. Classifiers
     were then trained to overfit to this dataset (achieve 100\% training
-    accuracy). \cref{fig:far-gaussian-curve} shows that adversarial accuracy
+    accuracy). Fig \ref{fig:far-gaussian-curve} shows that adversarial accuracy
     first decreases and then increases, as poisons are placed farther away from
     the means of the Gaussians. This supports the conjecture that placing
     mislabeled points in the highest probability density regions is not optimal
@@ -1901,7 +1902,7 @@ dataset with just 2 batches of size 4.
 \chapter{Early Unsuccessful Experiments}
 \label{chapter:failed-exp}
 
-The first subsection of this Chapter covers many of the initial experiments we
+The first subsection of this chapter covers many of the initial experiments we
 did, and failed at. The rest of the subsections detail the other experiments
 that shed light on what happens when networks memorise label noise, and
 eventually with a few final experiments showing the nature of the worst points
@@ -2182,8 +2183,8 @@ SGD did not learn networks that get a 100\% training accuracy on the
 reason why we could not add 2-dimensional visualisations for neural networks.
 With just a few extra dimensions of noise, networks manage to learn the training
 set. Neural Network classifiers resort to a simple, almost linear decision
-boundary. Interestingly, the following experiment shows that more ``scrambled''
-the data is, quicker does SGD resort to memorising the data.
+boundary, ignoring mislabeled points altogether. Interestingly, we observed that
+more ``scrambled'' the data is, quicker does SGD resort to memorising the data.
 
 The following was an experiment to hash the datapoints using the function in
 \cref{lst:hash} and get SGD to learn complex decision boundaries when the sense
@@ -2195,28 +2196,28 @@ to complex decision boundaries if a low loss is to be achieved. Figure
 100\% training accuracy, and the same training setup without the hash function
 was not able to do the same.
 % \todo{what does this mean ?}
-\citet{rahaman2019spectral} show that SGD learns classifiers that are biased
+\citet{rahaman2019spectral} showed that SGD learns classifiers that are biased
 towards first capturing lower frequency components, and then learning higher
 frequency ones, even if the amplitudes of these low frequency components is
-smaller. Further, they experiment with a dataset generated using a low frequency
-function in 1 dimension, and embed it in 2D on increasingly complex manifolds.
-High frequency components were learned faster when this manifold has larger
-complexity, and this might be happening here as well. Passing the data points
-through the hash embeds this data in a higher dimensional space, in a complex
-manifold, where high frequency components might be easier to capture.
+smaller. Further, they experimented with a dataset generated using a low
+frequency function in 1 dimension, and embeded it in 2-dimensions on
+increasingly complex manifolds. High frequency components were learned faster
+when this manifold has larger complexity, and this might be happening here as
+well. Passing the data points through the hash embeds this data in a higher
+dimensional space, in a complex manifold, where high frequency components might
+be easier to capture.
 % {\color{red} Further, they also show that these high frequency
 % components are learned faster or slower depending on how complex the
 % representation of the data is (more complex representations lead to the network
 % learning higher frequency components faster), which is likely what is happening
 % here.}
-% \todo{not sure what the red line means }
 \begin{figure}[!htb]
     \centering
     \includegraphics[scale=0.6]{hash_trick}
     \caption{Map showing a DNN classifier's decision boundaries and data points
     when the classifier is shown points after passing through the aforementioned
-    function. The two classes are in red and blue, and green is the third class
-    that poisons were labelled with.}
+    function \ref{lst:hash}. The two classes are in red and blue, and green is
+    the third class that poisons were labelled with.}
     \label{fig:hash-trick}
 \end{figure}
 
@@ -2236,6 +2237,6 @@ def hash(x): # x is a floating point number
 Another interesting observation regarding this, was that adding
 batch-normalisation \citep{batch-norm} to the network manages to get the network
 to memorise the above training data, without any hashing. Further, not shuffling
-training data across also helps with overfitting.
+training data across epochs also helps in memorising data faster.
 
 \end{document}
