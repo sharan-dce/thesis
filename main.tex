@@ -958,7 +958,7 @@ point in $\zeta$, then $\mathcal{R}_{\text{Adv}}^{2\rho-\frac{\chi}{2\kappa}}
 contributes to the adversarial risk.
 
 We will now lower bound the probability that there is one mislabeled point
-placed inside each $l_p$ ball around every point in $\zeta$.
+placed inside each $l_p$ ball of radius $\rho$ around every point in $\zeta$.
 
 \begin{equation*}
     \label{eq:Lipschitz-extension}
@@ -1032,8 +1032,8 @@ the classifier's output to be the probability of the input belonging to class
 We vary $k$ while lower-bounding the Lipschitzness ($\kappa$), and evaluating
 the adversarial and natural accuracies of the resultant classifiers.
 
-Figure \ref{fig:knn-map}(a) shows a visualisation of the classifiers' output,
-for $k=1,3,5$. Classifiers with lower values $k$ are smoother. Figure
+Figure \ref{fig:knn-map} shows a visualisation of the classifiers' output, for
+$k=1,3,5$. Classifiers with lower values $k$ are smoother. Figure
 \ref{fig:knn-accuracies} shows the natural and adversarial accuracies of these
 classifiers, as $k$ is varied. The adversarial accuracies were estimated against
 an $l_\infty$-PGD adversary with attack radius $0.2$.
@@ -1273,7 +1273,7 @@ added to the output layer of the network.
     class]{{\includegraphics[scale=0.45]{normal_training_toy_dataset_with_3rd_class}}}
     \caption{\fcolorbox{orange}{orange}{\rule{0pt}{3pt}\rule{3pt}{0pt}} is the
     test accuracy \fcolorbox{blue}{blue}{\rule{0pt}{3pt}\rule{3pt}{0pt}} is the
-    adversarial accuracy. $r$ axis represents the distance from the means of the
+    adversarial accuracy. $r$ represents the distance from the means of the
     gaussians where mislabelled points (poisons) were placed. Setting wrong
     labels to a third class produces a curve very similar to the case where
     labels were set to the opposite class for poisons. Multiple models were
@@ -1484,7 +1484,7 @@ results show the same trend.
     \subfloat[][\centering Network learning a ``pocket" around a mislabeled
     point]{{\includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-1}}}
     \qquad
-    \subfloat[][\centering Network teaking the decision boundary to
+    \subfloat[][\centering Network tweaking the decision boundary to
     ``accommodate" a mislabaled
     point]{{\includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-2.jpg}}}
     \caption{The above figure shows two different ways in which a classifier
@@ -1526,7 +1526,7 @@ radius around the input $\vec{x}$. We will carry out an \emph{unbounded}
 gradient descent attack, and record all the adversarial examples we get on the
 way.
 
-For a small step size $\omega$, we make gradient ascent updates on the input
+For a small step size $\epsilon$, we make gradient ascent updates on the input
 image that is plugged into a model, by backpropagating gradients from the loss,
 all over to the inputs. During these gradient updates, unlike Projected Gradient
 Descent, we do not project the updated input back into an $l_p$ ball of radius
@@ -1616,7 +1616,7 @@ rather than modify the natural decision boundary.
 \end{algorithm}
 
 
-\subsection{The experiments}
+\subsection{Adversarial Path Experiments}
 
 \subsubsection{0-1 MNIST}
     We only consider a 2-class dataset, composed of the classes ``0" and ``1",
@@ -1752,7 +1752,7 @@ class $A$ to a class $B$, then the adversarial paths should be targeted from $A$
 to $B$, after which the victim's model will be vulnerable to targeted attacks
 from class $A$ to class $B$. We can then perform an analysis over the different
 adversarial path lengths, fitting models for each case, which will guide towards
-refining our search towards a smaller set of points to search over.
+refining our search space.
 
 \chapter{Future Work: A Meta-Learning Approach}
 The problem of \emph{crafting} label noise can be framed as a multi-level
@@ -1861,12 +1861,12 @@ the \emph{victim} might be using. Most attacks in literature which make use of
 models to craft the attack assume a model and hope that the attack generalizes,
 which works very well practically) the modified label vector
 \begin{equation*}
-    \vec{y'} = \textbf{y}\odot(1-\textbf{f})+\textbf{y}\odot(1-\textbf{f})
+    \vec{y'} = \textbf{y}\odot(1-\textbf{f})+(1-\textbf{y})\odot\textbf{f}
 \end{equation*}
 Now we make gradient updates on the network we have, simulating training with
 these new labels, and recording all operations we do, use the final network
 produced by these updates to craft adversarial examples from the training set
-itself, and finally computing the loss of this final model on the adversarial
+itself, and finally compute the loss of this final model on the adversarial
 examples. This loss has to be \emph{maximised}. So we backpropagate from this
 loss, and receive gradients for $\vec{h}$ through $\vec{f}$, and we do a
 \emph{gradient ascent} on $\vec{h}$.
@@ -1902,11 +1902,10 @@ dataset with just 2 batches of size 4.
 \chapter{Early Unsuccessful Experiments}
 \label{chapter:failed-exp}
 
-The first subsection of this chapter covers many of the initial experiments we
-did, and failed at. The rest of the subsections detail the other experiments
-that shed light on what happens when networks memorise label noise, and
-eventually with a few final experiments showing the nature of the worst points
-to mislabel.
+This chapter is a record of the unsuccessful experiments we tried in the
+beginning. These were based on the idea that mislabeling points with high
+probability mass in the vicinity might be optimal to increase the adversarial
+risk of classifiers trained on the poisoned dataset.
 
 
 % \begin{figure}[!h]
@@ -1927,15 +1926,12 @@ reasoning that if mislabeled points are placed at high density regions - regions
 where if the classifier memorises the wrong label, will render a large amount of
 probability mass in the vicinity of this mislabeled point vulnerable. This was
 the inspiration for the algorithm we studied initially: flipping the labels of
-training points which come from high probability density areas. The ideas in
-this section involve flipping the labels of training points in regions which can
-render as much probability mass in their neighbourhood vulnerable as possible.
-For datasets like MNIST, there is no reliable way to model the probability
-density function given training points, which is why we attempt to resort to
-heuristics, based on various combinations of representations of points with
-different ways of selecting points. This will be explained in detail in the
-following paragraphs. The algorithms discussed in this section require a few
-definitions.
+training points which come from high probability density areas. For datasets
+like MNIST, there is no reliable way to model the probability density function
+given training points, which is why we attempt to resort to heuristics, based on
+various combinations of representations of points with different ways of
+selecting points. This will be explained in detail in the following paragraphs.
+The algorithms discussed in this section require a few definitions.
 
 \begin{definition}
     Given a set of points, $S=\{\vec{x_i}\}_{i=1}^m$, the Class-Graph of this
@@ -1951,10 +1947,10 @@ definitions.
 Intuitively, a class-graph of a set of points is an undirected graph connecting
 every two points closer than a threshold $\gamma$, under some norm $p$.
 
-The algorithm is based on the following idea: For each class of the dataset, we
-build class-graphs in some representation space. The degrees of various points
-are now considered to be a heuristic for the probability density at each point.
-We then use one of the two selection strategies outlined below to select
+The algorithms are based on the following idea: For each class of the dataset,
+we build class-graphs in some representation space. The degrees of various
+points are now considered to be a heuristic for the probability density at each
+point. We then use one of the two selection strategies outlined below to select
 vertices from class graphs, which will then be label-flipped. When we refer to
 label-flipping, we simply will change each label selected to be of the next
 class, cyclically. The adversarial accuracy of the resultant model will then be
@@ -1967,13 +1963,12 @@ Each of them take in an undirected graph, and select a given number of vertices
 from it. Let $\Delta$ be the maximum degree in the given graph.
 \begin{enumerate}
     \item Algorithm \ref{alg:greedy-selection}: We simply select $b$ nodes with
-    the highest degrees
+    the highest degrees.
     \item Algorithm \ref{alg:log-delta}: A $(\Delta + 2)$-approximation to the
     dominating set problem ($\Delta$ is the largest degree in the input graph),
-    for a budget number of vertices in the dominating set.
-    \citep{dominating-set} proves the approximation factor for the full
-    dominating set problem, and the proof for this budget-version follows form
-    it.
+    for a budget number of vertices in the dominating set. The approximation
+    factor for this budget version follows from the proof for the full
+    dominating set problem, as given in \citep{dominating-set}.
 \end{enumerate}
 
 \begin{algorithm}[!h]
@@ -2017,9 +2012,9 @@ the same neighbourhood vulnerable, which the second algorithm avoids.
 
 \subsection{Building graphs on input space}
 The first attempt was to build \emph{Class Graphs} on each class of the MNIST
-dataset, and for each class, pick vertices from the graph to flip labels. For
-now, we do not concern ourselves with the label we flip to. Each label that has
-to be flipped is simply set to the next value cyclically.
+dataset, and for each class, pick vertices from the graph to flip labels. These
+class-graphs are built on the normalised, flattened MNIST images. Each label
+that has to be flipped is simply set to the next value cyclically.
 
 The procedure we followed was as follows:
 \begin{enumerate}
@@ -2042,14 +2037,14 @@ Surprisingly, the results showed that not only did the above strategies yield
 networks that had adversarial errors comparable to the random strategy (i.e.,
 they are no better), rather, they were strictly \emph{inferior}. Networks
 trained on poisoned datasets modified using the above strategies are more robust
-than the ones trained on the same dataset but with random label noise. The next
-few subsections illustrate attempts to do the same in different subspaces which
-are more feature rich, since it might very well be the case that looking at the
-proximity of points in the input representation is sub-optimal for this. One
-strong reason why this might be the case is the inter-point distances of the
-points in practical datasets we experimented with: MNIST. The distances between
-points is far, far more than the perturbation budget $\rho$. Figure
-\ref{fig:inter-point-distances} illustrates this.
+than the ones trained on the same dataset but with randomly selected labels to
+flip. The next few subsections illustrate attempts to do the same in different
+subspaces which are more feature rich, since it might very well be the case that
+looking at the proximity of points in the input representation is sub-optimal
+for our purpose. One strong reason why this might be the case is the inter-point
+distances of the points in practical datasets we experimented with: MNIST. The
+distances between points is far, far more than the perturbation budget $\rho$.
+Figure \ref{fig:inter-point-distances} illustrates this.
 
 \begin{figure}
     \caption{Figure showing the distribution of the inter-point distances in
@@ -2068,14 +2063,13 @@ dimensional representations for each of the points. These $d_\text{low-rank}$
 directions are obtained by finding out the eigenvectors corresponding to the
 $d_\text{low-rank}$ highest eigenvalues of the covariance matrix of the data
 distribution. In practice, the mean and the covariance matrix are
-\emph{estimated} from the given data points. These low-dimensional
-representations yielded by PCA are generally referred to as \emph{low-rank}
-representations as well.
+\emph{estimated} from the given data points.
 
 We calculated the low-rank representations of points in the MNIST training set,
 and built Class-Graphs on these low-rank representations. This experiment did
-not yield any conclusions. In certain cases, it performed better and in certain
-cases worse, than the random baseline, which is not conclusive of anything.
+not yield any conclusions. For various values of $\gamma$ it performed better
+and in certain cases worse than the random baseline, which is not conclusive of
+anything.
 
 \subsection{Using the feature representations of a trained network}
 The next attempt was to consider the representations learnt by a trained network
@@ -2085,7 +2079,7 @@ closer in \emph{feature space} might perform well. This attempt too, did not
 yield anything.
 
 This was rather a bit short sighted, since we later realised, and experimentally
-verified as well, that networks memorise the false labels by learning very
+verified as well, that networks memorise the mislabeled points by learning very
 different feature representations, compared to other points in the vicinity,
 which have a different (correct) label.
 
@@ -2094,15 +2088,12 @@ which have a different (correct) label.
 
 The final experiment in this direction was to select points that are high-degree
 both in the input as well as feature space. We select $2b$ number of points from
-input as well as feature space. The greedy algorithm was employed for this,
-since the other one almost selected the same set of points, for the small
-budgets we had. We then select $b$ points from the intersection of the set of
-points selected by both the algorithms.
-
-The above also did not yield definitive results.
+input as well as feature space. We then select $b$ points from the intersection
+of the set of points selected by both the algorithms. The above also did not
+yield definitive results.
 
 
-\section{Min Coloring trick}
+\section{Colouring trick}
 If we could fit one model with each training set point flipped, then we could
 iterate over all such models and check which mislabelled points cause the
 largest drop in adversarial accuracy. In this experiment, we build graphs over
@@ -2154,19 +2145,21 @@ While we extend and also provide a new bound for the adversarial risk, when
 classifiers memorise label noise, it is clear from the experiments in this
 thesis that these bounds, as well as the one in literature, with regards to
 uniform label noise are highly vacuous in practice, with regards to DNNs. This
-is because networks seem to be much more smoother in memorising poisons than
-these analyses assume. The regions wrongly learnt by networks are much larger in
-size, rendering a large amount of probability mass vulnerable.
+is because networks seem to be much more smoother in memorising mislabled points
+than these analyses assume. The regions wrongly learnt by networks are much
+larger in size, rendering a large amount of probability mass vulnerable. We also
+discuss the idea that Lipschitzness might not be always advantageous.
 
 The adversarial path experiments conducted show that the points that hurt the
 adversarial accuracy the most when mislabeled, are the ones which force the
 network to learn complex decision boundaries. If in order to memorise a
 mislabeled point, networks tweak the decision boundary they would have learnt
-otherwise, in the absence of that mislabeled point, the adversarial accuracy is
+otherwise in the absence of that mislabeled point, the adversarial accuracy is
 massively hurt. These ideas could be used to carefully select points to
-label-flip in a dataset, given budget constraints. By analysing the adversarial
-paths of training points, on a model trained on the clean dataset, we can select
-points that are best to poison.
+label-flip in a dataset, given budget constraints. Victims who train their
+classifier on such a poisoned dataset will have highly accurate, but also highly
+adversarially vulnerable classifiers. Such a vulnerable classifier can be
+attacked once it gets deployed.
 
 
 \clearpage
@@ -2175,8 +2168,7 @@ points that are best to poison.
 
 \begin{appendices}
     
-\end{appendices}
-\section{Fitting Neural Networks to low dimensional data}
+\chapter{Fitting Neural Networks to low dimensional data}
 
 SGD did not learn networks that get a 100\% training accuracy on the
 2-dimensional toy dataset when poisons are very close to the means. This is the
@@ -2239,4 +2231,5 @@ batch-normalisation \citep{batch-norm} to the network manages to get the network
 to memorise the above training data, without any hashing. Further, not shuffling
 training data across epochs also helps in memorising data faster.
 
+\end{appendices}
 \end{document}
