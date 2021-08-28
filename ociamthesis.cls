@@ -65,7 +65,7 @@
 {
 % Latest Logo, Square version (the default!)
 % you need an oxlogo.eps or oxlogo.pdf file as appropriate
-\def\logo{{\includegraphics[width=7.2cm]{./images/oxlogo}}}
+\def\logo{{\includegraphics[width=6.2cm]{./images/oxlogo}}}
 }{}
 
 %

@@ -34,7 +34,7 @@ Learning Models}
 \date{}
 \college{}
 \degree{MSc in Computer Science}
-\degreedate{}
+\degreedate{Trinity 2020}
 
 \doublespacing
 
@@ -770,8 +770,8 @@ memorises the entire training set. The adversarial risk in the bound comes from
 the nearby probability mass, around mislabeled training points.
 
 
-This result inspired the first few algorithms we tried out, which were based on
-the idea that placing mislabeled points at the highest probability density
+This result inspired the first several algorithms we tried out, which were based
+on the idea that placing mislabeled points at the highest probability density
 regions might be optimal to harm the adversarial accuracy of models trained on
 the data. This is for the case where there is no uniform label noise. Rather, we
 as attackers, are allowed to change the labels of a few points in the dataset.
@@ -819,6 +819,11 @@ crafted to maximise the adversarial error of networks trained on poisoned data.
 From this point onward, points in the dataset that we mislabel, will be refered
 to as \emph{poisons}, \emph{flipped} points, or simply as \emph{mislabeled}
 points.
+
+Dataset poisoning attacks are mostly model-agnostic, i.e., they do not assume
+much information about the victim's model. If a model has to be used to craft
+the attack, then any architecture, or family of architectures is used in the
+hope that the attack generalises.
 
 
 \chapter{Is Lipschitzness always beneficial for robustness?}
@@ -1195,9 +1200,12 @@ not work. In this chapter, we systematically study the effect of mislabeled
 points on the adversarial accuracy of DNNs, for a toy dataset. Studying the
 problem on a toy dataset provides great control since we are aware of the data
 distribution, and we can \emph{place} mislabeled points rather than flipping
-points from sampled training sets. After that, we move to experiments on MNIST.
+points from sampled training sets. Guided by these toy experiments, we will then
+develop an \emph{adversarial path} based analysis
+\ref{section:adversarial-paths}, which we will test on MNIST.
 
 \section{Toy Distribution}
+\label{section:toy-distribution}
 
 To develop a better understanding of how neural networks fit mislabeled points,
 what exactly is the cause of the huge drop in their adversarial accuracy when
@@ -1477,6 +1485,7 @@ results show the same trend.
 % experiment, we attempt to 
 
 \section{Analysis using adversarial paths}
+\label{section:adversarial-paths}
 
 
 \begin{figure}[!h]
@@ -1528,14 +1537,14 @@ radius around the input $\vec{x}$. We will carry out an \emph{unbounded}
 gradient descent attack, and record all the adversarial examples we get on the
 way.
 
-For a small step size $\epsilon$, we make gradient ascent updates on the input
-that is plugged into a model, by backpropagating gradients from the loss, all
-over to the inputs. During these gradient updates, unlike Projected Gradient
-Descent, we do not project the updated input back into an $l_p$ ball of radius
-$\rho$ around the original input. After every update, we record the updated
-input. This procedure terminates when the output of the classifier is flipped,
-or when some maximum number of steps have already been taken. We will call this
-procedure \emph{untargeted-unbounded-gradient-descent}.
+For a small step size $\epsilon$, we make gradient updates on the input that is
+plugged into a model, by backpropagating gradients from the loss, all over to
+the inputs. During these gradient updates, unlike Projected Gradient Descent, we
+do not project the updated input back into an $l_p$ ball of radius $\rho$ around
+the original input. After every update, we record the updated input. This
+procedure terminates when the output of the classifier is flipped, or when some
+maximum number of steps have already been taken. We will call this procedure
+\emph{untargeted-unbounded-gradient-descent}.
 
 When we have several classes, it makes sense to study the effect of poisons by
 evaluating the adversarial accuracy of the model using targeted attacks from the
@@ -2176,12 +2185,13 @@ attacked once it gets deployed.
 \chapter{Fitting Neural Networks to low dimensional data}
 
 SGD did not learn networks that get a 100\% training accuracy on the
-2-dimensional toy dataset when poisons are very close to the means. This is the
-reason why we could not add 2-dimensional visualisations for neural networks.
-With just a few extra dimensions of noise, networks manage to learn the training
-set. Neural Network classifiers resort to a simple, almost linear decision
-boundary, ignoring mislabeled points altogether. Interestingly, we observed that
-more ``scrambled'' the data is, quicker does SGD resort to memorising the data.
+2-dimensional toy dataset \ref{section:toy-distribution} when poisons are very
+close to the means. This is the reason why we could not add 2-dimensional
+visualisations for neural networks. With just a few extra dimensions of noise,
+networks manage to learn the training set. Neural Network classifiers resort to
+a simple, almost linear decision boundary, ignoring mislabeled points
+altogether. Interestingly, we observed that more ``scrambled'' the data is,
+quicker does SGD resort to memorising the data.
 
 The following was an experiment to hash the datapoints using the function in
 \cref{lst:hash} and get SGD to learn complex decision boundaries when the sense
