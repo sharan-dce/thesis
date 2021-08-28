@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{36}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -87,6 +87,18 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
   imagenet classification.
 \newblock \emph{CoRR}, abs/1502.01852, 2015.
 \newblock URL \url{http://arxiv.org/abs/1502.01852}.
+
+\bibitem[Hein and Andriushchenko(2017)]{DBLP:conf/nips/HeinA17}
+Matthias Hein and Maksym Andriushchenko.
+\newblock Formal guarantees on the robustness of a classifier against
+  adversarial manipulation.
+\newblock In Isabelle Guyon, Ulrike von Luxburg, Samy Bengio, Hanna~M. Wallach,
+  Rob Fergus, S.~V.~N. Vishwanathan, and Roman Garnett, editors, \emph{Advances
+  in Neural Information Processing Systems 30: Annual Conference on Neural
+  Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA,
+  {USA}}, pages 2266--2276, 2017.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2017/hash/e077e1a544eec4f0307cf5c3c721d944-Abstract.html}.
 
 \bibitem[Hornik et~al.(1989)Hornik, Stinchcombe, and
   White]{hornik1989multilayer}

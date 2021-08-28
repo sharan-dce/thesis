@@ -11,45 +11,45 @@ Warning--empty year in dominating-set
 Warning--empty booktitle in adv-vuln-in-mission-critical
 Warning--empty institution in Krizhevsky09learningmultiple
 Warning--empty journal in lecun-mnisthandwrittendigit-2010
-You've used 35 entries,
+You've used 36 entries,
             2773 wiz_defined-function locations,
-            820 strings with 15117 characters,
-and the built_in function-call counts, 22889 in all, are:
-= -- 1932
-> -- 1903
-< -- 21
-+ -- 630
-- -- 595
-* -- 2082
-:= -- 3572
-add.period$ -- 145
-call.type$ -- 35
-change.case$ -- 295
-chr.to.int$ -- 35
-cite$ -- 79
-duplicate$ -- 873
-empty$ -- 1472
-format.name$ -- 635
-if$ -- 4759
+            826 strings with 15387 characters,
+and the built_in function-call counts, 23620 in all, are:
+= -- 1997
+> -- 1947
+< -- 23
++ -- 644
+- -- 608
+* -- 2137
+:= -- 3677
+add.period$ -- 149
+call.type$ -- 36
+change.case$ -- 300
+chr.to.int$ -- 36
+cite$ -- 81
+duplicate$ -- 907
+empty$ -- 1529
+format.name$ -- 651
+if$ -- 4922
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 33
-newline$ -- 212
-num.names$ -- 154
-pop$ -- 594
+missing$ -- 34
+newline$ -- 218
+num.names$ -- 160
+pop$ -- 606
 preamble$ -- 1
-purify$ -- 259
+purify$ -- 263
 quote$ -- 0
-skip$ -- 763
+skip$ -- 795
 stack$ -- 0
-substring$ -- 560
-swap$ -- 169
-text.length$ -- 17
+substring$ -- 602
+swap$ -- 182
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 385
+type$ -- 396
 warning$ -- 8
-while$ -- 148
+while$ -- 155
 width$ -- 0
-write$ -- 521
+write$ -- 536
 (There were 8 warnings)

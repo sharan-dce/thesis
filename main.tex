@@ -77,10 +77,10 @@ naturally constrained by a budget.
 
 We first extend a previous theoretical result regarding uniform label noise with
 Lipschitzness assumptions and discuss an example where Lipschitzness hurts the
-adversarial accuracy of the classifier, in a model-agnostic sense. Further, we
-systematically study different properties of Deep Neural Networks memorising
-label noise, and end with a strategy that provides a way to select points which
-when label-flipped, hurt the adversarial accuracy of trained networks massively.
+adversarial accuracy of the classifier. Then, we systematically study different
+properties of Deep Neural Networks memorising label noise, and end with a
+strategy that provides a way to select points which when label-flipped, hurt the
+adversarial accuracy of trained networks massively.
 
 \tableofcontents
 
@@ -99,7 +99,9 @@ superhuman performance in board and computer games \citep{alpha-zero,
 starcraft}. However, the reliability of neural networks is still in question.
 The work of \citet{42503} opened up a new line of research on the robustness of
 neural networks against adversarial perturbations. Neural Networks seem to be
-sensitive to small changes in the input.
+sensitive to small changes in the input. These changes can be carefully crafted,
+such that the network misclassifies the perturbed input, which might seem to be
+a benign sample to the human eye.
 
 Recent works \citep{belkin2018understand,DBLP:journals/cacm/ZhangBHRV21} have
 pointed out that several over-parameterised machine learning models can memorise
@@ -115,11 +117,11 @@ However, memorising noisy data does come with downsides. \citet{sanyal2021how}
 investigated the consequences of memorising \emph{uniform} label noise on the
 adversarial error of the model. They showed that the adversarial error increases
 in the presence of such label noise because the model becomes increasingly
-vulnerable in regions where a wrong label has been memorised. So, a model that
-is trained on data with label noise might perform very well on unseen test data,
-but it will be highly adversarially vulnerable, much more than what a model
-trained on clean data would be. This means we, as attackers, can add human
-imperceptible perturbations to the inputs of a network and get the network to
+vulnerable in regions where a wrong label has been memorised. Hence, a model
+that is trained on data with label noise might perform very well on unseen test
+data, but it will be highly adversarially vulnerable, much more than what a
+model trained on clean data would be. This means we, as attackers, can add human
+imperceptible perturbations to the inputs of this network and get the it to
 misclassify them.
 
 While \citet{sanyal2021how} experimentally and theoretically investigated a
@@ -132,10 +134,11 @@ points in a dataset which we could mislabel, and render a victim's model,
 trained on this ``poisoned" data, to be highly adversarially vulnerable. The
 number of points we can flip is constrained by a budget. Victims who might
 deploy their model trained on such a poisoned dataset, will have vulnerabilities
-in their system. This study is also in the hope that we can uncover some
-properties of neural networks fitting mislabeled points, and observe the effects
-of memorizing label noise, so that we might be able to come up with defences to
-the same.
+in their system. Their system might perform very well on unseen test data, but
+will perform poorly against adversarial examples. This study is also in the hope
+that we can uncover some properties of neural networks fitting mislabeled
+points, and observe the effects of memorizing label noise, so that we might be
+able to come up with defences to the same.
 
 % rephrase this
 The bound proven in Theorem 1 of \citet{sanyal2021how} makes no assumption
@@ -168,13 +171,13 @@ Our contributions in this thesis are threefold:
     trained on them. The experiments we did also indicate why randomly selecting
     points to label-flip in a popular dataset like MNIST is still very good.
     Points which massively hurt adversarial accuracy on being mislabeled turn
-    out to be high in number. This also identifies a significant property of
-    mislabeled points that causes such a massive drop in the adversarial
-    accuracy: they draw and stretch the decision boundary, and this will be
-    explained in detail in chapter \ref{chapter:experiments}. While our final
-    procedure is not a function into which we can simply plug in a dataset and
-    receive a poisoned version, we do have an impactful toolset that guides the
-    selection of training points to label-flip.
+    out to be high in number. The experiments also identify a significant
+    property of mislabeled points that causes such a massive drop in the
+    adversarial accuracy: they draw and stretch the decision boundary, and this
+    will be explained in detail in chapter \ref{chapter:experiments}. While our
+    final procedure is not a function into which we can simply plug in a dataset
+    and receive a poisoned version, we do have an impactful toolset that guides
+    the selection of training points to label-flip.
 \end{enumerate}
 
 
@@ -782,15 +785,15 @@ system that relies on this data. Modifications could be adding new malicious
 samples, changing existing samples, or perhaps changing labels.
 
 Backdoor attacks
-\citep{DBLP:journals/corr/abs-1712-05526,hidden-trigger-backdoor,transferable-clean-label-poisoning}
-are popular dataset poisoning attacks which involve crafting and placing
-data-points such that if a neural network classifier ends up memorising this
-point, it will have certain regions that are adversarially vulnerable. The name
-``backdoor" comes from the fact that samples that would seem to be of class $A$
-to us humans, will be learned by the classifier to be of class $B$, creating a
-region (a ``backdoor") where we as attackers, can later query inputs (these
-inputs may be adversarial examples) of one class, while the classifier predicts
-those inputs to be of another class.
+\citep{DBLP:journals/corr/abs-1712-05526,hidden-trigger-backdoor,
+transferable-clean-label-poisoning} are popular dataset poisoning attacks which
+involve crafting and placing data-points such that if a neural network
+classifier ends up memorising this point, it will have certain regions that are
+adversarially vulnerable. The name ``backdoor" comes from the fact that samples
+that would seem to be of class $A$ to us humans, will be learned by the
+classifier to be of class $B$, creating a region (a ``backdoor") where we as
+attackers, can later query inputs (these inputs may be adversarial examples) of
+one class, while the classifier predicts those inputs to be of another class.
 
 Label flipping attacks \citep{label-flip-SVMs,certified-robustness} are
 poisoning attacks where we as attackers can change the labels of points in the
@@ -835,9 +838,13 @@ smooth, and do not fit mislabeled points discontinuously. Each mislabeled
 training point will hence have a region around it, where the network produces
 the wrong answer. This is illustrated in \cref{fig:dictionary}.
 
-In this chapter, we develop results with Lipschitzness assumptions on the
-classifier, when label noise is present. The results are classifier agnostic,
-but the classifier must be Lipschitz.
+\citet{DBLP:conf/nips/HeinA17} proved that Lipschitzness guarantees robustness.
+But when label noise is present in the training data, Lipschitzness might hurt
+adversarial accuracy. In this chapter, we develop results with Lipschitzness
+assumptions on the classifier, when label noise is present. The result is
+classifier agnostic, as long as the Lipschitzness assumption is true for that
+classifier. This is followed by an example which shows $k$-nearest neighbour
+classifiers with decreasing smoothness having increasing adversarial accuracies.
 
 \begin{figure}
     \centering
@@ -1057,7 +1064,8 @@ an $l_\infty$-PGD adversary with attack radius $0.2$.
     \qquad
     \subfloat[][\centering Estimated lower bound on Lipschitzness ($\kappa$) of
     the classifiers]{\includegraphics[scale=0.40]{nn-distances.png}}
-    \caption{Smoother soft $k$-nearest neighbour classifiers are less adversarially robust.}
+    \caption{Smoother soft $k$-nearest neighbour classifiers are less
+    adversarially robust.}
     \label{fig:knn-accuracies}
 \end{figure}
 
@@ -1070,47 +1078,36 @@ an $l_\infty$-PGD adversary with attack radius $0.2$.
 %     \forall \vec{x'} \in \mathcal{B}_{\phi(\norm{\vec{x}-\mathcal{J}_S(\vec{x}, y)}_p)}^p(\vec{x}),~
 % \end{equation*}
 
-% \begin{theorem}
-%     \label{theorem:Lipschitzness-extension-closest-one}
-%     Let $\mathcal{C}$ be a classifier, and $\mathcal{D}: \mathbb{R}^d \to
-%     \mathbb{R}_{\geq 0}$ the data distribution, and $c: \mathbb{R}^d \to \Omega$
-%     be the ground truth labeling function, where $\Omega$ is the set of classes.
-%     If there exist constants $c_1, c_2, c_{\text{in}}, c_{\text{total}}$ and $R
-%     \geq r$ and a set $\zeta \subset \mathbb{R}^d$, such that:
-%     \begin{enumerate}
-%         \item $c_{\text{ceil}} \geq \mathbb{P}_{\vec{x} \sim \mathcal{D}} \bigg
-%         [~\underset{\vec{s} \in \zeta}{\bigcup}~\mathcal{B}_R^p(\vec{s}) \bigg ]
-%         \geq c_{\text{total}}$
-%         \item $\forall \vec{s} \in \zeta,~~ \mathbb{P}_{\vec{x} \sim
-%         \mathcal{D}} [\mathcal{B}_r^p(\vec{s})] \geq
-%         \frac{c_{\text{in}}}{|\zeta|}$
-%         \item $\forall \vec{s} \in \zeta,~\forall \vec{u}, \vec{v} \in
-%         \mathcal{B}_R^p(\vec{s}),~c(\vec{u}) = c(\vec{v})$
-%     \end{enumerate}
-%     where $\mathcal{B}^p_\rho(\vec{x})$ refers to a $\rho$-radius $l_p$ ball
-%     around $\vec{x}$. Let S be a training set, obtained by taking $n$ i.i.d.
-%     samples from $\mathcal{P}$, and labeling each with $c(.)$ with $\eta$
-%     probability, or some incorrect class with probability $1-\eta$. If a
-%     classifier $\mathcal{C}$ is such that
-%     \begin{enumerate}
-%         \item $\mathcal{C}$ has 100\% training accuracy on $S$. This means it
-%         gets the correct class on unflipped points, and has also memorized the
-%         wrong label on flipped points. Further, on each training point, the
-%         classifier $\mathcal{C}$ is confident on the result at least $\chi$ more
-%         than the second largest output probability.
-%         \item $\mathcal{C}$ is locally Lipschitz. We assume that this
-%         Lipschitzness constant is a decreasing function $\kappa$ of the distance
-%         to the nearest point of the opposite label. So for each point $\vec{x}
-%         \in \mathbb{R}^d$ and $\vec{x'}$ in its neighbourhood, with the nearest
-%         point to $\vec{x}$ with a different label being at a distance greater
-%         than $L$ in $l_p$ norm,
-%             \begin{equation*}
-%                 \frac{\llbracket \mathcal{C}(\vec{x}) \neq \mathcal{C}(\vec{x'}) \rrbracket}
-%                     {\norm{\vec{x} - \vec{x'}}_p} 
-%                 \leq \kappa(L)
-%             \end{equation*}
-%     \end{enumerate}
-%     then,
+% \begin{theorem} \label{theorem:Lipschitzness-extension-closest-one} Let
+%     $\mathcal{C}$ be a classifier, and $\mathcal{D}: \mathbb{R}^d \to
+%     \mathbb{R}_{\geq 0}$ the data distribution, and $c: \mathbb{R}^d \to
+%     \Omega$ be the ground truth labeling function, where $\Omega$ is the set
+%     of classes. If there exist constants $c_1, c_2, c_{\text{in}},
+%     c_{\text{total}}$ and $R \geq r$ and a set $\zeta \subset \mathbb{R}^d$,
+%     such that: \begin{enumerate} \item $c_{\text{ceil}} \geq
+%     \mathbb{P}_{\vec{x} \sim \mathcal{D}} \bigg [~\underset{\vec{s} \in
+%     \zeta}{\bigcup}~\mathcal{B}_R^p(\vec{s}) \bigg ] \geq c_{\text{total}}$
+%     \item $\forall \vec{s} \in \zeta,~~ \mathbb{P}_{\vec{x} \sim \mathcal{D}}
+%     [\mathcal{B}_r^p(\vec{s})] \geq \frac{c_{\text{in}}}{|\zeta|}$ \item
+%     $\forall \vec{s} \in \zeta,~\forall \vec{u}, \vec{v} \in
+%     \mathcal{B}_R^p(\vec{s}),~c(\vec{u}) = c(\vec{v})$ \end{enumerate} where
+%     $\mathcal{B}^p_\rho(\vec{x})$ refers to a $\rho$-radius $l_p$ ball around
+%     $\vec{x}$. Let S be a training set, obtained by taking $n$ i.i.d. samples
+%     from $\mathcal{P}$, and labeling each with $c(.)$ with $\eta$ probability,
+%     or some incorrect class with probability $1-\eta$. If a classifier
+%     $\mathcal{C}$ is such that \begin{enumerate} \item $\mathcal{C}$ has 100\%
+%     training accuracy on $S$. This means it gets the correct class on
+%     unflipped points, and has also memorized the wrong label on flipped
+%     points. Further, on each training point, the classifier $\mathcal{C}$ is
+%     confident on the result at least $\chi$ more than the second largest
+%     output probability. \item $\mathcal{C}$ is locally Lipschitz. We assume
+%     that this Lipschitzness constant is a decreasing function $\kappa$ of the
+%     distance to the nearest point of the opposite label. So for each point
+%     $\vec{x} \in \mathbb{R}^d$ and $\vec{x'}$ in its neighbourhood, with the
+%     nearest point to $\vec{x}$ with a different label being at a distance
+%     greater than $L$ in $l_p$ norm, \begin{equation*} \frac{\llbracket
+%     \mathcal{C}(\vec{x}) \neq \mathcal{C}(\vec{x'}) \rrbracket} {\norm{\vec{x}
+%     - \vec{x'}}_p} \leq \kappa(L) \end{equation*} \end{enumerate} then,
 
 %     \begin{equation*}
 %         \mathbb{P} \biggl [
@@ -1192,13 +1189,13 @@ an $l_\infty$-PGD adversary with attack radius $0.2$.
 
 The initial experiments we tried were based on the idea that placing mislabeled
 points in areas where high probability mass is present in the vicinity might be
-optimal. These experiments are discussed in Chapter \ref{chapter:failed-exp}.
-This idea does not work. In this chapter, we systematically study the effect of
-mislabeled points on the adversarial accuracy of DNNs, for a toy dataset.
-Studying the problem on a toy dataset provides great control since we are aware
-of the data distribution, and we can \emph{place} mislabeled points rather than
-flipping points from sampled training sets. After that, we move to experiments
-on MNIST.
+optimal to hurt the robustness of classifiers trained on the data. These
+experiments are discussed in Chapter \ref{chapter:failed-exp}. This idea does
+not work. In this chapter, we systematically study the effect of mislabeled
+points on the adversarial accuracy of DNNs, for a toy dataset. Studying the
+problem on a toy dataset provides great control since we are aware of the data
+distribution, and we can \emph{place} mislabeled points rather than flipping
+points from sampled training sets. After that, we move to experiments on MNIST.
 
 \section{Toy Distribution}
 
@@ -1206,7 +1203,7 @@ To develop a better understanding of how neural networks fit mislabeled points,
 what exactly is the cause of the huge drop in their adversarial accuracy when
 \emph{random} label noise is introduced into the dataset, and also why the
 highest probability density regions are not the best to label-flip, we carry out
-some controlled experiments in this chapter. Some of the following experiments
+some controlled experiments in this section. Some of the following experiments
 utilise a toy dataset which consists of two classes, with the instance space
 being $\mathbb{R}^d$. To create the training set, $n$ samples are generated from
 the gaussian mixture
@@ -1451,12 +1448,16 @@ experiment with other randomly selected points to label-flip as well, and the
 results show the same trend.
 
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[scale=0.6]{pgd-path-scoring}
-%     \caption{0-1 MNIST: The orange curve (baseline) shows the adversarial accuracy of the network when mislabeled poisons are randomly selected. The blue curve shows the adversarial accuracy of different networks trained on poisoned datasets, where the mislabeled poisons were placed at increasing distances from the decision boundary ($x$ axis). The $x$ axis (labeled "bin") is only an ordinal value, and higher values on this axis represent poisoned datasets where the mislabeled points are at greater distances from the decision boundary that the network would have otherwise learnt on a clean dataset.}
-%     \label{fig:pgd-path-scoring}
-% \end{figure}
+% \begin{figure}[!h] \centering \includegraphics[scale=0.6]{pgd-path-scoring}
+%     \caption{0-1 MNIST: The orange curve (baseline) shows the adversarial
+%     accuracy of the network when mislabeled poisons are randomly selected. The
+%     blue curve shows the adversarial accuracy of different networks trained on
+%     poisoned datasets, where the mislabeled poisons were placed at increasing
+%     distances from the decision boundary ($x$ axis). The $x$ axis (labeled
+%     "bin") is only an ordinal value, and higher values on this axis represent
+%     poisoned datasets where the mislabeled points are at greater distances
+%     from the decision boundary that the network would have otherwise learnt on
+%     a clean dataset.} \label{fig:pgd-path-scoring} \end{figure}
 
 
 % \subsection{Detecting Adversarial examples/mislabeled points}
@@ -1486,7 +1487,8 @@ results show the same trend.
     \qquad
     \subfloat[][\centering Network tweaking the decision boundary to
     ``accommodate" a mislabaled
-    point]{{\includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-2.jpg}}}
+    point]{{
+    \includegraphics[scale=0.30]{thesis-learning-pockets-or-tweaking-boundary-2.jpg}}}
     \caption{The above figure shows two different ways in which a classifier
     could memorise a mislabeled point. If the decision boundary is tweaked to
     accommodate a mislabeled point, it could lead to much higher adversarial
@@ -1515,11 +1517,11 @@ in number.
 
 A requirement to the experiments that follow is a procedure to find a path from
 a data point to the decision boundary of a given classifier. For instance, if we
-are given a classifier trained on the full MNIST dataset, and are given a
-data-point $\vec{x}$ (i.e., some handwritten digit), then we need to find a path
-(the shortest path ideally) from this datapoint to the decision boundary. We
-might also have a constraint: finding a path to the decision boundary of the
-current data point's class, and a target class. Further, this path is
+are given a classifier trained on the MNIST dataset, and are given a data-point
+$\vec{x}$ (i.e., some handwritten digit), then we need to find a path (the
+shortest path ideally) from this datapoint to the decision boundary. We might
+also have a constraint: finding a path to the decision boundary of the current
+data point's class, and a target class. Further, this path is distance-wise
 unconstrained, and we are not concerning ourselves with finding such a path that
 completely lies inside a certain region, such as an $l_p$ ball of specific
 radius around the input $\vec{x}$. We will carry out an \emph{unbounded}
@@ -1527,8 +1529,8 @@ gradient descent attack, and record all the adversarial examples we get on the
 way.
 
 For a small step size $\epsilon$, we make gradient ascent updates on the input
-image that is plugged into a model, by backpropagating gradients from the loss,
-all over to the inputs. During these gradient updates, unlike Projected Gradient
+that is plugged into a model, by backpropagating gradients from the loss, all
+over to the inputs. During these gradient updates, unlike Projected Gradient
 Descent, we do not project the updated input back into an $l_p$ ball of radius
 $\rho$ around the original input. After every update, we record the updated
 input. This procedure terminates when the output of the classifier is flipped,
@@ -1554,7 +1556,7 @@ experiments, we came across label noise already present in MNIST. This is
 illustrated in figure \ref{fig:pgd-path-examples}. We selected points closest to
 and farthest from the decision boundary, and plotted them out. Many of the
 points closest to the decision boundary already have label noise. Adversarial
-paths were found out from each class to the next, in a targeted manner, for this
+paths were found out from each class to the next, in a targeted manner for this
 analysis.
 
 \begin{figure}
@@ -1584,7 +1586,7 @@ analysis.
 
 \subsection{Using adversarial paths to analyse poisons}
 
-For a given dataset, we first train a classifier on the clean datasets, without
+For a given dataset, we first train a classifier on the clean dataset, without
 placing any mislabeled poisons. Let us call this the \emph{clean classifier}. We
 then iterate over the training set, and find out adversarial paths for each
 point.
@@ -1601,6 +1603,7 @@ rather than modify the natural decision boundary.
 \caption{Targeted Unbounded Gradient Ascent}
 \begin{algorithmic}[1]
 \Procedure{Adversarial-Path}{$\mathcal{C}, \vec{x}, t, m, \epsilon$}
+    \Comment{$m$: max iterations, $\epsilon$: step size}
     \State Path $\gets [\vec{x}]$
     \State Output $\gets \mathcal{C}(\vec{x})$
     \While{len(Path) $\leq m$ and $t \neq$ Output}
@@ -1908,17 +1911,6 @@ probability mass in the vicinity might be optimal to increase the adversarial
 risk of classifiers trained on the poisoned dataset.
 
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[scale=0.6, trim={10 10 10 10}, clip]{different-poisons-multiple-runs.png}
-%     \caption{Only one point from class 5 was flipped to class 6. This was
-%     randomly chosen for 3 different runs, and for each run, multiple models were
-%     trained, and their accuracy on \emph{targeted} attacks from class 5 to 6 was
-%     averaged. The figure indicates that some points are worse for adversarial
-%     accuracy compared to others, when mislabeled.}
-%     \label{fig:random-runs}
-% \end{figure}
-
 \section{Building graphs on training points}
 
 \citet{sanyal2021how} theoretically gives bounds for the adversarial risk by
@@ -1988,7 +1980,8 @@ from it. Let $\Delta$ be the maximum degree in the given graph.
 \begin{algorithmic}[1]
 \Procedure{Smart-Greedy-Selection}{$G, b$}
     \State $n \gets |V(G)|$
-    \State $S \gets \phi, D \gets \phi, U \gets \{1..n\}$   \Comment{$\phi$ refers to the empty set}
+    \State $S \gets \phi, D \gets \phi, U \gets \{1..n\}$   
+        \Comment{$\phi$ refers to the empty set}
     \While{$b > 0~\wedge~U \neq \phi$}
         \State choose $v \in \underset{x \in D\cup U}{\arg\max}|{U\cap (\{x\}\cup N_G(x))}|$
         \Comment $N_G(x)$ is the set of points in $G$ neighbouring to $x$
@@ -2122,15 +2115,26 @@ which of these neighbours) the attack settled at.
 
 Next, we flip the labels of the training points in class 5 with the largest
 scores assigned by the above algorithm. The resulting network's adversarial
-accuracy is estimated on class 5 only, and that too in a targeted fashion, attempting attacks that flip the network's output from 5 to 6, precisely.
+accuracy is estimated on class 5 only, and that too in a targeted fashion,
+attempting attacks that flip the network's output from 5 to 6, precisely.
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.4, trim={0 0 0 0}, clip]{thesis-coloring-trick.png}
-    \caption{Idea behind using different color labels for each point in a specific class, and getting a network to memorise the assigned labels. The black lines show the decision boundaries learnt for the different colors, and red boxes show the points which are vulnerable because of a boundary passing through the $l_\infty$ balls around those points.}
+    \caption{Idea behind using different color labels for each point in a
+    specific class, and getting a network to memorise the assigned labels. The
+    black lines show the decision boundaries learnt for the different colors,
+    and red boxes show the points which are vulnerable because of a boundary
+    passing through the $l_\infty$ balls around those points.}
 \end{figure}
 
-\emph{The above experiment was compared to the random strategy, where randomly chosen points from class 5 (same fraction of points mislabeled, for comparison). The random strategy still performed better, compared to points selected by the above algorithm. This hints towards the idea that there are points, and a large number of them, such that the network not only learns a wrong region around them, but probably learns stretched out, far reaching regions from the decision boundary that it would have learnt on a clean dataset.}
+\emph{The above experiment was compared to the random strategy, where randomly
+chosen points from class 5 (same fraction of points mislabeled, for comparison).
+The random strategy still performed better, compared to points selected by the
+above algorithm. This hints towards the idea that there are points, and a large
+number of them, such that the network not only learns a wrong region around
+them, but probably learns stretched out, far reaching regions from the decision
+boundary that it would have learnt on a clean dataset.}
 
 
 
@@ -2141,16 +2145,17 @@ probability density regions is sub-optimal to hurt the adversarial accuracy of
 models, and also provide a way to select points to label flip, by analysing
 their adversarial paths for models trained on clean data.
 
-While we extend and also provide a new bound for the adversarial risk, when
+While we extend and also provide a new bound for the adversarial risk when
 classifiers memorise label noise, it is clear from the experiments in this
 thesis that these bounds, as well as the one in literature, with regards to
 uniform label noise are highly vacuous in practice, with regards to DNNs. This
-is because networks seem to be much more smoother in memorising mislabled points
-than these analyses assume. The regions wrongly learnt by networks are much
-larger in size, rendering a large amount of probability mass vulnerable. We also
-discuss the idea that Lipschitzness might not be always advantageous.
+is because networks seem to be much smoother in memorising mislabled points than
+these analyses assume. The regions wrongly learnt by networks are much larger in
+size, rendering a large amount of probability mass vulnerable. We also discuss
+the idea that Lipschitzness might be harmful for robustness when label noise is
+present.
 
-The adversarial path experiments conducted show that the points that hurt the
+The adversarial path experiments we conducted show that the points that hurt the
 adversarial accuracy the most when mislabeled, are the ones which force the
 network to learn complex decision boundaries. If in order to memorise a
 mislabeled point, networks tweak the decision boundary they would have learnt
