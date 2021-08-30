@@ -152,7 +152,7 @@ networks learned with SGD are much smoother, and end up learning regions around
 these mislabelled points where the network will produce the wrong label, rather
 than just at the mislabelled points. Our aim is to also study the nature of
 these regions. The experiments in this thesis reveal whether these regions are
-seperate pockets, such that nearby points become vulnerable, or are extensive
+separate pockets, such that nearby points become vulnerable, or are extensive
 regions which render regions far away from the mislabeled training point
 vulnerable.
 
@@ -220,7 +220,7 @@ risk is computed as
 $\mathcal{C}$ is a ``hard'' classifier in the discussion above. It produces one
 class in its output. We will be dealing with \emph{probabilistic} classifiers as
 well in our discussions, where $\mathcal{C}:\mathbb{R}^d\to\Delta^{|\Omega|}$
-produces a probabity distribution over classes, where $\Delta^k$ is the
+produces a probability distribution over classes, where $\Delta^k$ is the
 $k$-dimensional simplex. In such a case, the final decision made by the
 classifier is considered to be $\underset{\vec{x}\in\Omega}{\arg\max}~
 \mathcal{C}(\vec{x})$. The nature of the classifier under study will be clear
@@ -229,7 +229,7 @@ will be explicitly referred to as probabilistic classifiers.
 
 \section{Neural networks}
 
-Deep Neural Networks are a family of over-parametrised models. They are proven
+Deep Neural Networks are a family of over-parameterised models. They are proven
 \emph{universal approximators} \citep{hornik1989multilayer}, which means with
 enough parameters, they can approximate any function with arbitrarily small
 error.
@@ -295,7 +295,7 @@ distribution over classes in $\Omega$. This is achieved by using the
 \end{equation*}
 where $\Delta^k$ refers to the $k$ dimensional simplex.
 
-The softmax function is essentially a continous version of the one-hot-argmax
+The softmax function is essentially a continuous version of the one-hot-argmax
 function, which returns a one-hot vector of same dimensionality, with a $1$ at
 the index with the maximal value in the input vector, and 0 elsewhere. The above
 activation produces a probability distribution over the dimensions. Hence, in
@@ -390,7 +390,7 @@ argument. This discrete input will simply be treated as an appropriate one-hot
 encoded vector.
 
 \subsection{Backpropagation}
-To train a neural network $\mathcal{C}_\theta$ parametrised by $\theta$ with the
+To train a neural network $\mathcal{C}_\theta$ parameterised by $\theta$ with the
 algorithms mentioned in section \ref{section:sgd}, we require to compute
 $\mathbb{E}_{\vec{x} \sim \mathcal{P}}[\nabla_\theta
 \mathcal{L}(\mathcal{C(\vec{x})}, c(\vec{x}))]$ where $\mathcal{P}$ is the data
@@ -445,7 +445,7 @@ The adversarial vulnerability of classifiers is quantified through the
 \emph{adversarial risk}. While there are a multitude of ways in literature in
 which adversarial vulnerability has been defined, we are concerned with
 adversarial vulnerability in the context of $l_p$ perturbations. The adversarial
-risk in this context is parametrised by $\rho$ and $p$, the attack-radius and
+risk in this context is parameterised by $\rho$ and $p$, the attack-radius and
 attack-norm respectively. The adversarial risk
 $R_{\text{Adv}}^{\rho}(\mathcal{C})$ of a classifier $\mathcal{C}: \mathbb{R}^d
 \to \Omega$ in a classification problem where datapoints are drawn from the
@@ -618,9 +618,9 @@ for a targeted attack. The sign function is given by:
         \end{array}
     \right.
 \end{equation*}
-and the above function is overloaded to vectors as an elementwise operation. The
-sign of gradients, scaled by $\epsilon$ are used for updates to ensure that the
-perturbation added is small.
+and the above function is overloaded to vectors as an element-wise operation.
+The sign of gradients, scaled by $\epsilon$ are used for updates to ensure that
+the perturbation added is small.
 
 
 \subsection{Projected Gradient Descent}
@@ -659,7 +659,7 @@ The PGD attack requires the following arguments and hyperparameters:
     having a smaller attack-radius. For a fixed $\epsilon$, increasing $p$
     allows for stronger attacks.
 \end{enumerate}
-We repreatedly perturb the current perturbed image using FGSM, and project it
+We repeatedly perturb the current perturbed image using FGSM, and project it
 back onto the $l_p$ ball around the original input. Using the PGD algorithm with
 attack norm $p$ is generally also referred to as ``using an $l_p$
 PGD-adversary". The attack strategies we discussed are specified in algorithm
@@ -826,7 +826,7 @@ robust to these poisoning attacks.
 
 The objective of this thesis is to study how label-flipping attacks can be
 crafted to maximise the adversarial error of networks trained on poisoned data.
-From this point onward, points in the dataset that we mislabel, will be refered
+From this point onward, points in the dataset that we mislabel, will be referred
 to as \emph{poisons}, \emph{flipped} points, or simply as \emph{mislabeled}
 points.
 
@@ -870,7 +870,7 @@ classifiers with decreasing smoothness having increasing adversarial accuracies.
     circles indicate the smoothness guarantee. The radius of these circles is
     the distance that the input has to be changed by, in $l_2$ norm, for the
     classifier to change its output. The red dotted lines enclose regions which
-    are adversarially vulnerable to being misclassfied from ``green'' to
+    are adversarially vulnerable to being misclassified from ``green'' to
     ``red'', under an $l_2$-norm attack regime of certain radius $\rho$. $\rho$
     is the margin between solid red regions and dotted red lines in the above
     figure.}
@@ -1050,7 +1050,7 @@ neighbour classifier considers the $k$ nearest neighbours from the training set.
 For these $k$ neighbours, the inverse of the $l_2$ distance to $\vec{x}$ are
 considered, and instead of a majority vote, this inverse metric is considered to
 be the weight given to each neighbour. The classifier produces a distribution
-over classes by using these computed classwise weights as logits, which are
+over classes by using these computed class-wise weights as logits, which are
 softmax-normalised. For ease of notation, we fix the classifier's output to be
 the probability of the input belonging to class ``0''. This classifier is
 Lipschitz
