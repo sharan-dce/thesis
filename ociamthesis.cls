@@ -11,7 +11,7 @@
 \DeclareOption{shieldcrest}{\def\logoversion{shieldcrest}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
-\LoadClass[a4paper]{report}
+\LoadClass[12pt,a4paper]{report}
 % As an alternative to the above could use next line for twosided output
 %\LoadClass[a4paper,twoside,openright]{report}
 
@@ -107,7 +107,7 @@
     {{\@college} \par}
 % \vspace*{1ex}
 %     {University of Oxford \par}
-\vspace*{25mm}
+\vspace*{20mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
     {\it {\@degree} \par}

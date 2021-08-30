@@ -1,14 +1,9 @@
-\begin{thebibliography}{36}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[dom()]{dominating-set}
-Dominating set (chapter 7).
-\newblock URL
-  \url{http://ac.informatik.uni-freiburg.de/teaching/ss_12/netalg/lectures/chapter7.pdf}.
 
 \bibitem[Alzantot et~al.(2018)Alzantot, Sharma, Chakraborty, and
   Srivastava]{genattack}
@@ -16,7 +11,6 @@ Moustafa Alzantot, Yash Sharma, Supriyo Chakraborty, and Mani~B. Srivastava.
 \newblock Genattack: Practical black-box attacks with gradient-free
   optimization.
 \newblock \emph{CoRR}, abs/1805.11090, 2018.
-\newblock URL \url{http://arxiv.org/abs/1805.11090}.
 
 \bibitem[Bartlett et~al.(2020)Bartlett, Long, Lugosi, and
   Tsigler]{bartlett2020benign}
@@ -27,14 +21,18 @@ Peter~L Bartlett, Philip~M Long, G{\'a}bor Lugosi, and Alexander Tsigler.
 \bibitem[Belkin et~al.(2018)Belkin, Ma, and Mandal]{belkin2018understand}
 Mikhail Belkin, Siyuan Ma, and Soumik Mandal.
 \newblock To understand deep learning we need to understand kernel learning.
-\newblock \emph{arXiv preprint arXiv:1802.01396}, 2018.
+\newblock In \emph{Proceedings of the 35th International Conference on Machine
+  Learning, {ICML} 2018, Stockholmsm{\"{a}}ssan, Stockholm, Sweden, July 10-15,
+  2018}, volume~80 of \emph{Proceedings of Machine Learning Research}, pages
+  540--548. {PMLR}, 2018.
+\newblock URL \url{http://proceedings.mlr.press/v80/belkin18a.html}.
 
 \bibitem[Boloor et~al.(2019)Boloor, He, Gill, Vorobeychik, and
   Zhang]{adv-vuln-in-mission-critical}
 Adith Boloor, Xin He, Christopher Gill, Yevgeniy Vorobeychik, and Xuan Zhang.
 \newblock Simple physical adversarial examples against end-to-end autonomous
   driving models.
-\newblock pages 1--7, 06 2019.
+\newblock 06 2019.
 \newblock \doi{10.1109/ICESS.2019.8782514}.
 
 \bibitem[Chen et~al.(2017)Chen, Liu, Li, Lu, and
@@ -43,42 +41,49 @@ Xinyun Chen, Chang Liu, Bo~Li, Kimberly Lu, and Dawn Song.
 \newblock Targeted backdoor attacks on deep learning systems using data
   poisoning.
 \newblock \emph{CoRR}, abs/1712.05526, 2017.
-\newblock URL \url{http://arxiv.org/abs/1712.05526}.
+
+\bibitem[Engstrom et~al.(2019)Engstrom, Ilyas, Santurkar, and
+  Tsipras]{robustness}
+Logan Engstrom, Andrew Ilyas, Shibani Santurkar, and Dimitris Tsipras.
+\newblock Robustness (python library), 2019.
+\newblock URL \url{https://github.com/MadryLab/robustness}.
 
 \bibitem[Finn et~al.(2017)Finn, Abbeel, and Levine]{maml}
 Chelsea Finn, Pieter Abbeel, and Sergey Levine.
 \newblock Model-agnostic meta-learning for fast adaptation of deep networks.
-\newblock In Doina Precup and Yee~Whye Teh, editors, \emph{Proceedings of the
-  34th International Conference on Machine Learning, {ICML} 2017, Sydney, NSW,
-  Australia, 6-11 August 2017}, volume~70 of \emph{Proceedings of Machine
-  Learning Research}, pages 1126--1135. {PMLR}, 2017.
+\newblock In \emph{Proceedings of the 34th International Conference on Machine
+  Learning, {ICML} 2017, Sydney, NSW, Australia, 6-11 August 2017}, volume~70
+  of \emph{Proceedings of Machine Learning Research}, pages 1126--1135. {PMLR},
+  2017.
 \newblock URL \url{http://proceedings.mlr.press/v70/finn17a.html}.
 
 \bibitem[Franceschi et~al.(2017)Franceschi, Donini, Frasconi, and
   Pontil]{forward-reverse-hyperparameter}
 Luca Franceschi, Michele Donini, Paolo Frasconi, and Massimiliano Pontil.
 \newblock Forward and reverse gradient-based hyperparameter optimization.
-\newblock In Doina Precup and Yee~Whye Teh, editors, \emph{Proceedings of the
-  34th International Conference on Machine Learning, {ICML} 2017, Sydney, NSW,
-  Australia, 6-11 August 2017}, volume~70 of \emph{Proceedings of Machine
-  Learning Research}, pages 1165--1173. {PMLR}, 2017.
+\newblock In \emph{Proceedings of the 34th International Conference on Machine
+  Learning, {ICML} 2017, Sydney, NSW, Australia, 6-11 August 2017}, volume~70
+  of \emph{Proceedings of Machine Learning Research}, pages 1165--1173. {PMLR},
+  2017.
 \newblock URL \url{http://proceedings.mlr.press/v70/franceschi17a.html}.
 
 \bibitem[Goodfellow et~al.(2015)Goodfellow, Shlens, and
   Szegedy]{Goodfellow2015ExplainingAH}
-I.~Goodfellow, Jonathon Shlens, and Christian Szegedy.
+Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy.
 \newblock Explaining and harnessing adversarial examples.
-\newblock \emph{CoRR}, abs/1412.6572, 2015.
+\newblock In \emph{3rd International Conference on Learning Representations,
+  {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track
+  Proceedings}, 2015.
+\newblock URL \url{http://arxiv.org/abs/1412.6572}.
 
 \bibitem[Guo et~al.(2019)Guo, Gardner, You, Wilson, and Weinberger]{simba}
 Chuan Guo, Jacob~R. Gardner, Yurong You, Andrew~Gordon Wilson, and Kilian~Q.
   Weinberger.
 \newblock Simple black-box adversarial attacks.
-\newblock In Kamalika Chaudhuri and Ruslan Salakhutdinov, editors,
-  \emph{Proceedings of the 36th International Conference on Machine Learning,
-  {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}}, volume~97 of
-  \emph{Proceedings of Machine Learning Research}, pages 2484--2493. {PMLR},
-  2019.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning, {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}},
+  volume~97 of \emph{Proceedings of Machine Learning Research}, pages
+  2484--2493. {PMLR}, 2019.
 \newblock URL \url{http://proceedings.mlr.press/v97/guo19a.html}.
 
 \bibitem[He et~al.(2015)He, Zhang, Ren, and Sun]{imagenet-superhuman}
@@ -92,11 +97,9 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 Matthias Hein and Maksym Andriushchenko.
 \newblock Formal guarantees on the robustness of a classifier against
   adversarial manipulation.
-\newblock In Isabelle Guyon, Ulrike von Luxburg, Samy Bengio, Hanna~M. Wallach,
-  Rob Fergus, S.~V.~N. Vishwanathan, and Roman Garnett, editors, \emph{Advances
-  in Neural Information Processing Systems 30: Annual Conference on Neural
-  Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA,
-  {USA}}, pages 2266--2276, 2017.
+\newblock In \emph{Advances in Neural Information Processing Systems 30: Annual
+  Conference on Neural Information Processing Systems 2017, December 4-9, 2017,
+  Long Beach, CA, {USA}}, pages 2266--2276, 2017.
 \newblock URL
   \url{https://proceedings.neurips.cc/paper/2017/hash/e077e1a544eec4f0307cf5c3c721d944-Abstract.html}.
 
@@ -118,18 +121,18 @@ Andrew Ilyas, Logan Engstrom, and Aleksander Madry.
 Sergey Ioffe and Christian Szegedy.
 \newblock Batch normalization: Accelerating deep network training by reducing
   internal covariate shift.
-\newblock In Francis~R. Bach and David~M. Blei, editors, \emph{Proceedings of
-  the 32nd International Conference on Machine Learning, {ICML} 2015, Lille,
-  France, 6-11 July 2015}, volume~37 of \emph{{JMLR} Workshop and Conference
-  Proceedings}, pages 448--456. JMLR.org, 2015.
+\newblock In \emph{Proceedings of the 32nd International Conference on Machine
+  Learning, {ICML} 2015, Lille, France, 6-11 July 2015}, volume~37 of
+  \emph{{JMLR} Workshop and Conference Proceedings}, pages 448--456. JMLR.org,
+  2015.
 \newblock URL \url{http://proceedings.mlr.press/v37/ioffe15.html}.
 
 \bibitem[Kingma and Ba(2015)]{Adam}
 Diederik~P. Kingma and Jimmy Ba.
 \newblock Adam: {A} method for stochastic optimization.
-\newblock In Yoshua Bengio and Yann LeCun, editors, \emph{3rd International
-  Conference on Learning Representations, {ICLR} 2015, San Diego, CA, USA, May
-  7-9, 2015, Conference Track Proceedings}, 2015.
+\newblock In \emph{3rd International Conference on Learning Representations,
+  {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track
+  Proceedings}, 2015.
 \newblock URL \url{http://arxiv.org/abs/1412.6980}.
 
 \bibitem[Krizhevsky(2009)]{Krizhevsky09learningmultiple}
@@ -140,9 +143,8 @@ Alex Krizhevsky.
 \bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and Hinton]{imagenet}
 Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
 \newblock Imagenet classification with deep convolutional neural networks.
-\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
-  editors, \emph{Advances in Neural Information Processing Systems}, volume~25.
-  Curran Associates, Inc., 2012.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~25. Curran Associates, Inc., 2012.
 \newblock URL
   \url{https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf}.
 
@@ -188,6 +190,30 @@ Alex Nichol, Joshua Achiam, and J.~Schulman.
 \newblock On first-order meta-learning algorithms.
 \newblock \emph{ArXiv}, abs/1803.02999, 2018.
 
+\bibitem[Paszke et~al.(2019)Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
+  Killeen, Lin, Gimelshein, Antiga, Desmaison, Kopf, Yang, DeVito, Raison,
+  Tejani, Chilamkurthy, Steiner, Fang, Bai, and Chintala]{NEURIPS2019_9015}
+Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+  Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban
+  Desmaison, Andreas Kopf, Edward Yang, Zachary DeVito, Martin Raison, Alykhan
+  Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu~Fang, Junjie Bai, and Soumith
+  Chintala.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock In \emph{Advances in Neural Information Processing Systems 32}, pages
+  8024--8035. Curran Associates, Inc., 2019.
+\newblock URL
+  \url{http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf}.
+
+\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
+  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
+  Cournapeau, Brucher, Perrot, and Duchesnay]{scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2825--2830,
+  2011.
+
 \bibitem[Rahaman et~al.(2019)Rahaman, Baratin, Arpit, Draxler, Lin, Hamprecht,
   Bengio, and Courville]{rahaman2019spectral}
 Nasim Rahaman, Aristide Baratin, Devansh Arpit, Felix Draxler, Min Lin, Fred~A.
@@ -216,13 +242,12 @@ Aniruddha Saha, Akshayvarun Subramanya, and Hamed Pirsiavash.
   NY, USA, February 7-12, 2020}, pages 11957--11965. {AAAI} Press, 2020.
 \newblock URL \url{https://aaai.org/ojs/index.php/AAAI/article/view/6871}.
 
-\bibitem[Sanyal et~al.(2021)Sanyal, Kanade, Dokania, and Torr]{sanyal2021how}
-Amartya Sanyal, Varun Kanade, Puneet~K. Dokania, and Philip~H.S. Torr.
+\bibitem[Sanyal et~al.(2021)Sanyal, Dokania, Kanade, and Torr]{sanyal2021how}
+Amartya Sanyal, Puneet~K. Dokania, Varun Kanade, and Philip H.~S. Torr.
 \newblock How benign is benign overfitting ?
-\newblock In \emph{Submitted to International Conference on Learning
-  Representations}, 2021.
+\newblock In \emph{9th International Conference on Learning Representations,
+  {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net, 2021.
 \newblock URL \url{https://openreview.net/forum?id=g-wu9TMPODo}.
-\newblock under review.
 
 \bibitem[Schwarzschild et~al.(2020)Schwarzschild, Goldblum, Gupta, Dickerson,
   and Goldstein]{just-how-toxic}
@@ -231,7 +256,6 @@ Avi Schwarzschild, Micah Goldblum, Arjun Gupta, John~P. Dickerson, and Tom
 \newblock Just how toxic is data poisoning? {A} unified benchmark for backdoor
   and data poisoning attacks.
 \newblock \emph{CoRR}, abs/2006.12557, 2020.
-\newblock URL \url{https://arxiv.org/abs/2006.12557}.
 
 \bibitem[Silver et~al.(2017)Silver, Schrittwieser, Simonyan, Antonoglou, Huang,
   Guez, Hubert, Baker, Lai, Bolton, Chen, Lillicrap, Hui, Sifre, Driessche,
@@ -247,11 +271,9 @@ David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja
 \bibitem[Sutskever et~al.(2014)Sutskever, Vinyals, and Le]{seq2seq}
 Ilya Sutskever, Oriol Vinyals, and Quoc~V. Le.
 \newblock Sequence to sequence learning with neural networks.
-\newblock In Zoubin Ghahramani, Max Welling, Corinna Cortes, Neil~D. Lawrence,
-  and Kilian~Q. Weinberger, editors, \emph{Advances in Neural Information
-  Processing Systems 27: Annual Conference on Neural Information Processing
-  Systems 2014, December 8-13 2014, Montreal, Quebec, Canada}, pages
-  3104--3112, 2014.
+\newblock In \emph{Advances in Neural Information Processing Systems 27: Annual
+  Conference on Neural Information Processing Systems 2014, December 8-13 2014,
+  Montreal, Quebec, Canada}, pages 3104--3112, 2014.
 \newblock URL
   \url{https://proceedings.neurips.cc/paper/2014/hash/a14ac55a4f27472c5d894ec1c3c743d2-Abstract.html}.
 
@@ -268,11 +290,9 @@ Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan,
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
   Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
 \newblock Attention is all you need.
-\newblock In Isabelle Guyon, Ulrike von Luxburg, Samy Bengio, Hanna~M. Wallach,
-  Rob Fergus, S.~V.~N. Vishwanathan, and Roman Garnett, editors, \emph{Advances
-  in Neural Information Processing Systems 30: Annual Conference on Neural
-  Information Processing Systems 2017, December 4-9, 2017, Long Beach, CA,
-  {USA}}, pages 5998--6008, 2017.
+\newblock In \emph{Advances in Neural Information Processing Systems 30: Annual
+  Conference on Neural Information Processing Systems 2017, December 4-9, 2017,
+  Long Beach, CA, {USA}}, pages 5998--6008, 2017.
 \newblock URL
   \url{https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html}.
 
@@ -296,7 +316,6 @@ Oriol Vinyals, Igor Babuschkin, Wojciech~M. Czarnecki, Micha{\"{e}}l Mathieu,
   learning.
 \newblock \emph{Nat.}, 575\penalty0 (7782):\penalty0 350--354, 2019.
 \newblock \doi{10.1038/s41586-019-1724-z}.
-\newblock URL \url{https://doi.org/10.1038/s41586-019-1724-z}.
 
 \bibitem[Xiao et~al.(2012)Xiao, Xiao, and Eckert]{label-flip-SVMs}
 Han Xiao, Huang Xiao, and C.~Eckert.
@@ -317,11 +336,10 @@ Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals.
 Chen Zhu, W.~Ronny Huang, Hengduo Li, Gavin Taylor, Christoph Studer, and Tom
   Goldstein.
 \newblock Transferable clean-label poisoning attacks on deep neural nets.
-\newblock In Kamalika Chaudhuri and Ruslan Salakhutdinov, editors,
-  \emph{Proceedings of the 36th International Conference on Machine Learning,
-  {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}}, volume~97 of
-  \emph{Proceedings of Machine Learning Research}, pages 7614--7623. {PMLR},
-  2019.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning, {ICML} 2019, 9-15 June 2019, Long Beach, California, {USA}},
+  volume~97 of \emph{Proceedings of Machine Learning Research}, pages
+  7614--7623. {PMLR}, 2019.
 \newblock URL \url{http://proceedings.mlr.press/v97/zhu19a.html}.
 
 \end{thebibliography}
